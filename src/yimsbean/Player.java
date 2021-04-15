@@ -12,11 +12,7 @@ package yimsbean;
 public class Player {
     private int LP = 5000;
     private int total=0;
-    private int test;
 
-    public void setTest(int test) {
-        this.test = test;
-    }
     public Player() {
     }
 
