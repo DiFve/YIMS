@@ -12,8 +12,6 @@ package yimsbean;
 public class Player {
     private int LP = 5000;
     private int total=0;
-    private int Jarkky;
-    private int JarrkyLove;
     public Player() {
     }
 
