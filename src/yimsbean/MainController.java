@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 
 public class MainController {
     Deck deck = new Deck();
-    int total=0;
+    Player player = new Player();
     @FXML
     private Label currentNum;
     public void useSpecialBtnOnAction(ActionEvent event)
@@ -22,11 +22,16 @@ public class MainController {
     public void keepCurrentBtnOnAction(ActionEvent event)
     {
         System.out.println("Keep");
+        System.out.println("Print");
     }
 
     public void drawCardBtnOnAction(ActionEvent event)
     {
-        total+=deck.draw();
-        currentNum.setText(total+"/21");
+        player.setTotal(player.getTotal()+deck.draw());
+        currentNum.setText(player.getTotal()+"/21");
+        if(player.getTotal()>21)
+        {
+            System.out.println("Lose");
+        }
     }
 }

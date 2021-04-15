@@ -29,12 +29,14 @@ public class YIMSBean extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("InGameUI.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Hello JavaFX");
         System.out.println("KUYSAKTEE");
         stage.show();
+        Deck deck  = new Deck();
+        
     }
 
 }
