@@ -1,5 +1,5 @@
 # วิธี Set Up โฟลเดอร์ Project
-- [ ] สร้าง Folder ตั้งชื่ออะไรก้ได้อันนึงแล้วเปิด cmd ที่ Folder
+- [x] สร้าง Folder ตั้งชื่ออะไรก้ได้อันนึงแล้วเปิด cmd ที่ Folder
 
 -[ ] พิมพ์  ``` git clone https://github.com/DiFve/YIMS ``` เพื่อลงไฟล์ Project ไว้ใน Folder
 
