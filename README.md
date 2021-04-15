@@ -1,8 +1,8 @@
 # วิธี Set Up โฟลเดอร์ Project
--[x] สร้าง Folder ตั้งชื่ออะไรก้ได้อันนึงแล้วเปิด cmd ที่ Folder
--[x] พิมพ์  ``` git clone https://github.com/DiFve/YIMS ``` เพื่อลงไฟล์ Project ไว้ใน Folder
--[x] เปิด netbeans แล้ว กด ``` File > Open Project > Folderที่สร้างมาแล้ว ``` เปิดไฟล้ Project ที่ชื่อ ```YIMS```
--[x] ใน netbeans กดคลิ๊กขวาที่ Project ```YIMS``` แล้ว ```set up JavaFX ใหม่ + ลบของเก่าออก```
+-[] สร้าง Folder ตั้งชื่ออะไรก้ได้อันนึงแล้วเปิด cmd ที่ Folder
+-[] พิมพ์  ``` git clone https://github.com/DiFve/YIMS ``` เพื่อลงไฟล์ Project ไว้ใน Folder
+-[] เปิด netbeans แล้ว กด ``` File > Open Project > Folderที่สร้างมาแล้ว ``` เปิดไฟล้ Project ที่ชื่อ ```YIMS```
+-[] ใน netbeans กดคลิ๊กขวาที่ Project ```YIMS``` แล้ว ```set up JavaFX ใหม่ + ลบของเก่าออก```
 
 # วิธี Push งาน
 -[x] เปิด Folder ```YIMS``` แล้วเปิด ```cmd```
