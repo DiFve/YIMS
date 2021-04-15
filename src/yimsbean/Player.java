@@ -12,7 +12,7 @@ package yimsbean;
 public class Player {
     private int LP = 5000;
     private int total=0;
-    int test;
+    int Yahoo = 300;
     public Player() {
     }
 
