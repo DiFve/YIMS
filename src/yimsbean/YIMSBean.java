@@ -5,7 +5,6 @@
  */
 package yimsbean;
 
-import java.awt.Button;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,7 +32,6 @@ public class YIMSBean extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Hello JavaFX");
-        System.out.println("KUYSAKTEE");
         stage.show();
     }
 
