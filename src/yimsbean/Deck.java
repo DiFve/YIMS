@@ -12,6 +12,7 @@ public class Deck {
     static private int count=0;
     private int[] numCard = {1,1,1,1,1,1,1,1,1,1,1};
     private int[] specialCard = {2,2,2,2,2,2,2};
+    private String specialCardEffect[] = {"returnMyLatestCard","returnEnemyLatestCard","enemyBetx2","drawExactCard","drawBestCardForEnemy","drawBestCardForMe","changeToClosestTo24"};
     Game game;
     public Deck(Game game) {
         this.game = game;
@@ -21,27 +22,19 @@ public class Deck {
         int rand;
 
         Random random = new Random();
-        int specialCardChance = random.nextInt(12); // 1 in 12
+        int specialCardChance = random.nextInt(5); // 1 in 5
         if(specialCardChance==0)
         {
             System.out.println("Got a Special");
             while(true){
                 rand = random.nextInt(7);
-                switch(rand){
-                    case 0: 
-                        game.getPlayer().pushInHand(new Card("returnMyLatestCard"));
-                    case 1:
-                        game.getPlayer().pushInHand(new Card("returnEnemyLatestCard"));
-                    case 2:
-                        game.getPlayer().pushInHand(new Card("enemyBetx2"));
-                    case 3:
-                        game.getPlayer().pushInHand(new Card("drawExactCard"));
-                    case 4:
-                        game.getPlayer().pushInHand(new Card("drawBestCardForEnemy"));
-                    case 5:
-                        game.getPlayer().pushInHand(new Card("drawBestCardForMe"));
-                    case 6:
-                        game.getPlayer().pushInHand(new Card("changeToClosestTo24"));
+                if(specialCard[rand] == 0){
+                    continue;
+                }else{
+                    game.getPlayer().pushInHand(new Card(specialCardEffect[rand]));
+                    System.out.println("you got : "+specialCardEffect[rand]);
+                    specialCard[rand]--;
+                    break; 
                 }
             }
         }
