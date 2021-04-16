@@ -8,7 +8,7 @@ package yimsbean;
 import java.util.Random;
 
 public class Deck {
-    private int[] cardDeck = {1,1,1,1,1,1,1,1,1,1,1};
+    Card card = new Card();
     static private int count=0;
     public Deck() {
 
@@ -29,12 +29,12 @@ public class Deck {
             while(true)
             {
                 rand = random.nextInt(11);
-                if(cardDeck[rand]==0)
+                if(card.getNumCard()[rand]==0)
                     continue;
                 else
                 {
                     count++;
-                    cardDeck[rand]--;
+                    card.setNumCard(0,rand);
                     break;
                 }
             }

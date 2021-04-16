@@ -9,13 +9,13 @@
 
 # วิธี Push งาน
 - [ ] เปิด Folder ```YIMS``` แล้วเปิด ```cmd```
-
+- [ ] พิมพ์ ```git pull``` เพื่ออัพเดทงานก่อนpush จะได้mergeรวมกันได้
 - [ ] พิมพ์ ```git checkout -b ชื่อBranchที่จะสร้าง``` ทำแค่ครั้งแรกครั้งเดียว
 - [ ] พิมพ์ ```git add .```
 
 - [ ] ```git commit -m "ข้อความ"```
 
-- [ ] ```git push origin ชื่อBranchที่สร้างไว้``` **ห้ามใช้ git push origin main เด็ดขาด เดี๋ยวโค้ดบึ้ม**
+- [ ] ```git push origin ชื่อBranchที่สร้างไว้``` :bomb: :bomb: **ห้ามใช้ git push origin main เด็ดขาด เดี๋ยวโค้ดบึ้ม** :bomb: :bomb:
 
 - [ ] ไปที่หน้า ```https://github.com/DiFve/YIMS```จะเห็นปุ่ม ```Compare && pull request``` กดเข้าไปแล้วกด ```pull request```
 
