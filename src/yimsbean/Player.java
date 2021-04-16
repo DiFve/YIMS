@@ -12,8 +12,11 @@ package yimsbean;
 public class Player {
     private int LP = 5000;
     private int total=0;
-    private Card[] handCards = new Card[100];
-    private int handCardCount = 0;
+    private Card[] numCards = new Card[100];
+    private Card[] specialCards = new Card[100];
+    private int numCardCount = 0;
+    private int specialCardCount = 0;
+    private Boolean getSpecialBool = false;
     Game game;
     public Player(Game game){
         this.game = game;
@@ -38,11 +41,25 @@ public class Player {
     }
     
     public void pushInHand(Card drawCard){
-        handCards[handCardCount++] = drawCard;
+        if(!drawCard.isSpecialCard()){
+            numCards[numCardCount++] = drawCard;    
+        }
+        else{
+            specialCards[specialCardCount++] = drawCard;   
+            this.getSpecialBool = true;
+        }
     }
-    
-    public Card useInHand(int indexInHand){
-        return handCards[indexInHand];
+    public Boolean isGetSpecial(){
+        return getSpecialBool;
     }
-    
+    public void setSpecial(Boolean bool){
+        this.getSpecialBool = bool;
+    }
+    public void useSpecial(int specialCardIndex){
+        System.out.println("at Index " + specialCardIndex + " used " + specialCards[specialCardIndex].getEffect());
+        specialCardCount--;
+    }
+    public int specialCardAmount(){
+        return specialCardCount;
+    }
 }
