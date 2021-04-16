@@ -15,7 +15,7 @@
 
 - [ ] ```git commit -m "ข้อความ"```
 
-- [ ] ```git push origin ชื่อBranchที่สร้างไว้``` :bomb: :bomb: **ห้ามใช้ git push origin main เด็ดขาด เดี๋ยวโค้ดบึ้ม** :bomb: :bomb:
+- [ ] ```git push origin ชื่อBranchที่สร้างไว้``` ** :bomb: :bomb: ห้ามใช้ git push origin main เด็ดขาด เดี๋ยวโค้ดบึ้ม :bomb: :bomb: **
 
 - [ ] ไปที่หน้า ```https://github.com/DiFve/YIMS```จะเห็นปุ่ม ```Compare && pull request``` กดเข้าไปแล้วกด ```pull request```
 
