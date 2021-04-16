@@ -33,7 +33,6 @@ public class YIMSBean extends Application {
         stage.setScene(scene);
         stage.setTitle("Hello JavaFX");
         stage.show();
-        Deck deck  = new Deck();
         
     }
 

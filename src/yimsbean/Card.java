@@ -10,10 +10,20 @@ package yimsbean;
  * @author jkbla
  */
 public class Card {
-    private int[] numCard = {1,1,1,1,1,1,1,1,1,1,1};
-    private int[] specialCard = {2,2,2,2,2,2,2,2,2,2};
-
-    public int[] getNumCard() {
+    private Boolean specialCard=false;
+    private int cardNum = 99;
+    private String specialEffectName="None";
+    public Card(){
+        
+    }
+    public Card(int cardNum){
+        this.cardNum = cardNum;
+    }
+    public Card(String specialEffectName){
+        this.specialEffectName = specialEffectName;
+        this.specialCard = true;
+    }
+   /* public int[] getNumCard() {
         return numCard;
     }
 
@@ -27,7 +37,7 @@ public class Card {
 
     public void setSpecialCard(int num,int index) {
         this.specialCard[index] = num;
-    }
+    }*/
     
     
 }

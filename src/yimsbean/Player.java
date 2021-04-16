@@ -12,9 +12,12 @@ package yimsbean;
 public class Player {
     private int LP = 5000;
     private int total=0;
-    public Player() {
+    private Card[] handCards = {};
+    private int handCardCount = 0;
+    Game game;
+    public Player(Game game){
+        this.game = game;
     }
-
     public int getTotal() {
         return total;
     }
@@ -32,6 +35,14 @@ public class Player {
     public int getLP() 
     {
         return LP;
+    }
+    
+    public void pushInHand(Card drawCard){
+        handCards[handCardCount++] = drawCard;
+    }
+    
+    public Card useInHand(int indexInHand){
+        return handCards[indexInHand];
     }
     
 }
