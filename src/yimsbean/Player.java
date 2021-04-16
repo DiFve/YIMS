@@ -12,7 +12,7 @@ package yimsbean;
 public class Player {
     private int LP = 5000;
     private int total=0;
-    private Card[] handCards = {};
+    private Card[] handCards = new Card[100];
     private int handCardCount = 0;
     Game game;
     public Player(Game game){
