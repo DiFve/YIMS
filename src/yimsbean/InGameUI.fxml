@@ -93,6 +93,9 @@
                </children>
             </AnchorPane>
          </left>
+         <right>
+            <AnchorPane fx:id="specialCardPane" disable="true" prefHeight="435.0" prefWidth="200.0" style="-fx-background-color: red;" visible="false" BorderPane.alignment="CENTER" />
+         </right>
       </BorderPane>
    </children>
 </GridPane>
