@@ -10,27 +10,38 @@ package yimsbean;
  * @author jkbla
  */
 public class Card {
-    private int[] numberCard = {1,1,1,1,1,1,1,1,1,1,1};
-    private int[] specialCard = {2,2,2,2,2,2,2,2,2,2};
-    
-    
-    public void setNumberCard(int numberCard,int index) {
-        this.numberCard[index] = numberCard;
+    private Boolean specialCard=false;
+    private int cardNum = 99;
+    private String specialEffectName="None";
+    public Card(){
+        
     }
-
-    public void setSpecialCard(int[] specialCard) {
-        this.specialCard = specialCard;
+    public Card(int cardNum){
+        this.cardNum = cardNum;
     }
-    
-
-    public int getNumberCard(int index) {
-        return numberCard[index];
+    public Card(String specialEffectName){
+        this.specialEffectName = specialEffectName;
+        this.specialCard = true;
     }
-
-    public int getSpecialCard(int index) {
-        return specialCard[index];
+    public Boolean isSpecialCard(){
+        return specialCard;
     }
     
+    public String getEffect(){
+        return specialEffectName;
+    }
+   /* public int[] getNumCard() {
+        return numCard;
+    }
+    public void setNumCard(int num,int index) {
+        this.numCard[index] = num;
+    }
+    public int[] getSpecialCard() {
+        return specialCard;
+    }
+    public void setSpecialCard(int num,int index) {
+        this.specialCard[index] = num;
+    }*/
     
     
 }

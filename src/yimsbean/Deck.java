@@ -8,19 +8,35 @@ package yimsbean;
 import java.util.Random;
 
 public class Deck {
-    static private int count=0;
     Card card = new Card();
-    public Deck() {
-
+    static private int count=0;
+    private int[] numCard = {1,1,1,1,1,1,1,1,1,1,1};
+    private int[] specialCard = {2,2,2,2,2,2,2};
+    private String specialCardEffect[] = {"returnMyLatestCard","returnEnemyLatestCard","enemyBetx2","drawExactCard","drawBestCardForEnemy","drawBestCardForMe","changeToClosestTo24"};
+    Game game;
+    public Deck(Game game) {
+        this.game = game;
     }
     public int draw()
     {
         int rand;
+
         Random random = new Random();
-        int specialCardChance = random.nextInt(12); // 1 in 12
+        int specialCardChance = random.nextInt(1); // 1 in 5
         if(specialCardChance==0)
         {
             System.out.println("Got a Special");
+            while(true){
+                rand = random.nextInt(7);
+                if(specialCard[rand] == 0){
+                    continue;
+                }else{
+                    game.getPlayer().pushInHand(new Card(specialCardEffect[rand]));
+                    System.out.println("you got : "+specialCardEffect[rand]);
+                    specialCard[rand]--;
+                    break; 
+                }
+            }
         }
         if(count<11)
         {
@@ -28,12 +44,12 @@ public class Deck {
             while(true)
             {
                 rand = random.nextInt(11);
-                if(card.getNumberCard(rand)==0)
-                        continue;
+                if(numCard[rand]==0)
+                    continue;
                 else
                 {
                     count++;
-                    card.setNumberCard(0,rand);
+                    numCard[rand]--;
                     break;
                 }
             }
@@ -46,4 +62,3 @@ public class Deck {
         return rand+1;
     }
 }
-

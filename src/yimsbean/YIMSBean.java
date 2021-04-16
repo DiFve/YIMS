@@ -5,7 +5,6 @@
  */
 package yimsbean;
 
-import java.awt.Button;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,7 +33,6 @@ public class YIMSBean extends Application {
         stage.setScene(scene);
         stage.setTitle("Hello JavaFX");
         stage.show();
-        Deck deck  = new Deck();
         
     }
 

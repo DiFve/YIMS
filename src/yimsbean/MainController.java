@@ -5,34 +5,67 @@
  */
 package yimsbean;
 
-import java.awt.Button;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 public class MainController {
-    Deck deck = new Deck();
-    Player player = new Player();
+
     @FXML
     private Label currentNum;
-    private Button gonextBtn;
-    public void useSpecialBtnOnAction(ActionEvent event)
-    {
-        System.out.println("Special");
+    @FXML
+    private AnchorPane specialCardPane;
+    @FXML
+    //private Button specialCardButton1,specialCardButton2,specialCardButton3,specialCardButton4,specialCardButton5;
+    Game game = new Game();
+    Boolean showSpecialPane = false;
+
+    public void useSpecialBtnOnAction(ActionEvent event) {
+        showSpecialPane = !showSpecialPane;
+        if (showSpecialPane == false) {
+            specialCardPane.setDisable(true);
+            specialCardPane.setVisible(false);
+        } else {
+            specialCardPane.setDisable(false);
+            specialCardPane.setVisible(true);
+            System.out.println(game.getPlayer().specialCardAmount());
+            for (int i = 0; i < game.getPlayer().specialCardAmount(); i++) {
+                Button buttonTemp = (Button) specialCardPane.getChildren().get(i);
+                buttonTemp.setDisable(false);
+                buttonTemp.setVisible(true);
+            }
+        }
     }
 
-    public void keepCurrentBtnOnAction(ActionEvent event)
-    {
+    public void specialBtnUsed(ActionEvent event) {
+        System.out.println("SpecialUsed");
+        Button specialCardButtonTemp = (Button) event.getSource();
+        String idTemp = specialCardButtonTemp.getId();
+        char index = idTemp.charAt(idTemp.length() - 1);
+        Button buttonTemp = (Button) specialCardPane.getChildren().get(index - '0' - 1);
+        buttonTemp.setDisable(true);
+        buttonTemp.setVisible(false);
+        game.getPlayer().useSpecial(index - '0' - 1);
+    }
+
+    public void keepCurrentBtnOnAction(ActionEvent event) {
         System.out.println("Keep");
         System.out.println("Print");
     }
 
-    public void drawCardBtnOnAction(ActionEvent event)
-    {
-        player.setTotal(player.getTotal()+deck.draw());
-        currentNum.setText(player.getTotal()+"/21");
-        if(player.getTotal()>21)
-        {
+    public void drawCardBtnOnAction(ActionEvent event) {
+        game.getPlayer().setTotal(game.getPlayer().getTotal() + game.getDeck().draw());
+        if (game.getPlayer().isGetSpecial()) {
+            Button buttonTemp = (Button) specialCardPane.getChildren().get(game.getPlayer().specialCardAmount() - 1);
+            buttonTemp.setDisable(false);
+            buttonTemp.setVisible(true);
+            game.getPlayer().setSpecial(false);
+        }
+        currentNum.setText(game.getPlayer().getTotal() + "/21");
+        if (game.getPlayer().getTotal() > 21) {
             System.out.println("Lose");
         }
     }
