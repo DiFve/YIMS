@@ -5,6 +5,7 @@
  */
 package yimsbean;
 
+import java.awt.Button;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,6 +15,7 @@ public class MainController {
     Player player = new Player();
     @FXML
     private Label currentNum;
+    private Button gonextBtn;
     public void useSpecialBtnOnAction(ActionEvent event)
     {
         System.out.println("Special");

@@ -8,15 +8,14 @@ package yimsbean;
 import java.util.Random;
 
 public class Deck {
-    private int[] cardDeck = {1,1,1,1,1,1,1,1,1,1,1};
     static private int count=0;
+    Card card = new Card();
     public Deck() {
 
     }
     public int draw()
     {
         int rand;
-
         Random random = new Random();
         int specialCardChance = random.nextInt(12); // 1 in 12
         if(specialCardChance==0)
@@ -29,12 +28,12 @@ public class Deck {
             while(true)
             {
                 rand = random.nextInt(11);
-                if(cardDeck[rand]==0)
-                    continue;
+                if(card.getNumberCard(rand)==0)
+                        continue;
                 else
                 {
                     count++;
-                    cardDeck[rand]--;
+                    card.setNumberCard(0,rand);
                     break;
                 }
             }

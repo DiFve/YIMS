@@ -10,6 +10,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -28,11 +29,10 @@ public class YIMSBean extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("InGameUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Hello JavaFX");
-        System.out.println("KUYSAKTEE");
         stage.show();
         Deck deck  = new Deck();
         
