@@ -22,7 +22,7 @@ public class Deck {
         int rand;
 
         Random random = new Random();
-        int specialCardChance = random.nextInt(5); // 1 in 5
+        int specialCardChance = random.nextInt(1); // 1 in 5
         if(specialCardChance==0)
         {
             System.out.println("Got a Special");

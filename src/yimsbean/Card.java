@@ -23,6 +23,13 @@ public class Card {
         this.specialEffectName = specialEffectName;
         this.specialCard = true;
     }
+    public Boolean isSpecialCard(){
+        return specialCard;
+    }
+    
+    public String getEffect(){
+        return specialEffectName;
+    }
    /* public int[] getNumCard() {
         return numCard;
     }
