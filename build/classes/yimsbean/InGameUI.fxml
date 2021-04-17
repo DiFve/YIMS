@@ -46,17 +46,17 @@
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="currentNum1" layoutX="128.0" layoutY="315.0" text="5000">
+                  <Label fx:id="currentLP" layoutX="128.0" layoutY="315.0" text="5000">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="currentNum2" layoutX="112.0" layoutY="350.0" text=":">
+                  <Label layoutX="112.0" layoutY="350.0" text=":">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="currentNum21" layoutX="111.0" layoutY="315.0" text=":">
+                  <Label layoutX="111.0" layoutY="315.0" text=":">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
@@ -76,17 +76,42 @@
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="currentNum11" layoutX="128.0" layoutY="65.0" text="5000">
+                  <Label fx:id="currentEnemyLP" layoutX="128.0" layoutY="65.0" text="5000">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="currentNum22" layoutX="112.0" layoutY="100.0" text=":">
+                  <Label layoutX="112.0" layoutY="100.0" text=":">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="currentNum211" layoutX="111.0" layoutY="65.0" text=":">
+                  <Label layoutX="111.0" layoutY="65.0" text=":">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lpBet" layoutX="165.0" layoutY="315.0" text="-500" textFill="RED" visible="false">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lpBetEnemy" layoutX="165.0" layoutY="65.0" text="-500" textFill="RED" visible="false">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="200.0" prefHeight="20.0" prefWidth="109.0" text="Current Bet">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="currentBet" layoutX="128.0" layoutY="200.0" text="5000">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="111.0" layoutY="200.0" text=":">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
@@ -125,6 +150,18 @@
                </children>
             </AnchorPane>
          </right>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="winLabel" layoutX="23.0" layoutY="168.0" text="You Win!!!" visible="false">
+                     <font>
+                        <Font name="Pristina" size="39.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="continueBtn" disable="true" layoutX="68.0" layoutY="276.0" mnemonicParsing="false" onAction="#continueBtnOnAction" text="Continue" visible="false" />
+               </children>
+            </AnchorPane>
+         </center>
       </BorderPane>
    </children>
 </GridPane>

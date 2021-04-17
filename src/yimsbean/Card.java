@@ -30,18 +30,6 @@ public class Card {
     public String getEffect(){
         return specialEffectName;
     }
-   /* public int[] getNumCard() {
-        return numCard;
-    }
-    public void setNumCard(int num,int index) {
-        this.numCard[index] = num;
-    }
-    public int[] getSpecialCard() {
-        return specialCard;
-    }
-    public void setSpecialCard(int num,int index) {
-        this.specialCard[index] = num;
-    }*/
     
     
 }

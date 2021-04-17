@@ -15,20 +15,25 @@ import javafx.scene.layout.Pane;
 public class MainController {
 
     @FXML
-    private Label currentNum;
+    private Label currentNum,lpBet,currentLP,currentEnemyLP,winLabel;
     @FXML
     private AnchorPane specialCardPane;
     @FXML
-    //private Button specialCardButton1,specialCardButton2,specialCardButton3,specialCardButton4,specialCardButton5;
+    private Button drawCardBtn,keepCurrentBtn,useSpecialBtn,continueBtn;
     Game game = new Game();
     Boolean showSpecialPane = false;
-
+    Boolean showLPDecrease = false;
+    int bet = 500;
     public void useSpecialBtnOnAction(ActionEvent event) {
         showSpecialPane = !showSpecialPane;
         if (showSpecialPane == false) {
+            keepCurrentBtn.setDisable(false);
+            drawCardBtn.setDisable(false);
             specialCardPane.setDisable(true);
             specialCardPane.setVisible(false);
         } else {
+            drawCardBtn.setDisable(true);
+            keepCurrentBtn.setDisable(true);
             specialCardPane.setDisable(false);
             specialCardPane.setVisible(true);
             System.out.println(game.getPlayer().specialCardAmount());
@@ -66,7 +71,35 @@ public class MainController {
         }
         currentNum.setText(game.getPlayer().getTotal() + "/21");
         if (game.getPlayer().getTotal() > 21) {
-            System.out.println("Lose");
+            lpBet.setVisible(true);
+            lpBet.setText("-"+bet);
+            winLabel.setVisible(true);
+            continueBtn.setVisible(true);
+            continueBtn.setDisable(false);
+            drawCardBtn.setDisable(true);
+            keepCurrentBtn.setDisable(true);
+            useSpecialBtn.setDisable(true);
+            game.getPlayer().setLP(game.getPlayer().getLP()-bet);
         }
+    }
+    public void continueBtnOnAction(ActionEvent event)
+    {
+        continueBtn.setVisible(true);
+        continueBtn.setDisable(false);
+        drawCardBtn.setDisable(false);
+        keepCurrentBtn.setDisable(false);
+        useSpecialBtn.setDisable(false);
+        currentLP.setText(""+game.getPlayer().getLP());
+        
+        winLabel.setVisible(false);
+        continueBtn.setVisible(false);
+        continueBtn.setDisable(true);
+        
+        lpBet.setVisible(false);
+        
+        game.getPlayer().setTotal(0);
+        currentNum.setText(game.getPlayer().getTotal() + "/21");
+        game.getDeck().returnNumCardToDeck();
+        game.getDeck().setCount(0);
     }
 }

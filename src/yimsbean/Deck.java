@@ -63,9 +63,20 @@ public class Deck {
         else
         {
             System.out.println("Out of Deck");
-            System.out.println("dfdfdfdfd");
             return 0;
         }
         return rand+1;
+    }
+    
+    public void returnNumCardToDeck()
+    {
+        for(int i=0;i<11;i++)
+        {
+            numCard[i] = 1;
+        }
+    }
+
+    public static void setCount(int count) {
+        Deck.count = count;
     }
 }

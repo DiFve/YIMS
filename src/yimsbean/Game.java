@@ -10,15 +10,15 @@ package yimsbean;
  * @author user
  */
 public class Game {
-    Deck deck = new Deck(this);
-    Player player = new Player(this);
-    
-    public Deck getDeck(){
+
+    private Deck deck = new Deck(this);
+    private Player player = new Player(this);
+
+    public Deck getDeck() {
         return deck;
     }
-    
-    public Player getPlayer(){
+
+    public Player getPlayer() {
         return player;
     }
-    
 }
