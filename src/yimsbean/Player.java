@@ -17,6 +17,7 @@ public class Player {
     private int numCardCount = 0;
     private int specialCardCount = 0;
     private Boolean getSpecialBool = false;
+    private Boolean specialHandFull = false;
     Game game;
     public Player(Game game){
         this.game = game;
@@ -47,6 +48,9 @@ public class Player {
         else{
             specialCards[specialCardCount++] = drawCard;   
             this.getSpecialBool = true;
+            if(specialCardCount == 5){
+                specialHandFull = true;
+            }
         }
     }
     public Boolean isGetSpecial(){
@@ -61,5 +65,9 @@ public class Player {
     }
     public int specialCardAmount(){
         return specialCardCount;
+    }
+    
+    public Boolean isSpecialHandFull(){
+        return specialHandFull;
     }
 }
