@@ -67,6 +67,7 @@ public class MainController {
             Button buttonTemp = (Button) specialCardPane.getChildren().get(game.getPlayer().specialCardAmount() - 1);
             buttonTemp.setDisable(false);
             buttonTemp.setVisible(true);
+            buttonTemp.setText(game.getPlayer().getSpecialCard()[game.getPlayer().specialCardAmount()-1].getEffect());
             game.getPlayer().setSpecial(false);
         }
         currentNum.setText(game.getPlayer().getTotal() + "/21");

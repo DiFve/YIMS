@@ -70,4 +70,8 @@ public class Player {
     public Boolean isSpecialHandFull(){
         return specialHandFull;
     }
+    
+    public Card[] getSpecialCard(){
+        return specialCards;
+    }
 }
