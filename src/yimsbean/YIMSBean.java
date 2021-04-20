@@ -20,9 +20,6 @@ public class YIMSBean extends Application implements Runnable {
     
     Boolean running = false;
     public static Game game;
-    public YIMSBean(Game game){
-        this.game = game;
-    }
     private Thread gameThread;
 
     public static void main(String[] args) {
