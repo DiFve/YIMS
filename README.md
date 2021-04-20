@@ -30,7 +30,7 @@
 
 - [ ] พิมพ์ ```git checkout master``` 
 
-- [ ] ```git pull```
+- [ ] ```git pull origin master```
 
 <<<<<<< HEAD
 - [ ] พิมพ์ ``` git checkout ชื่อBranchตัวเอง ```
