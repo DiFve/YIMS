@@ -9,6 +9,6 @@ package yimsbean;
  *
  * @author jkbla
  */
-public class NewClass {
-    int test;
+public class MainMenu {
+    public static Boolean menuActive=true;
 }

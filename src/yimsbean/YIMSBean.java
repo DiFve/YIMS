@@ -6,29 +6,32 @@
 package yimsbean;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
  *
  * @author jkbla
  */
+
 public class YIMSBean extends Application implements Runnable {
-
+    
+    long delay=0;
     Boolean running = false;
-
+    public static Game game;
     private Thread gameThread;
-
+    
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        Game game = new Game();
-
+        game = new Game();
         Parent root = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -60,7 +63,8 @@ public class YIMSBean extends Application implements Runnable {
             fDeltaTime += (currentTime - startTime);
             startTime = currentTime;
             if (uDeltaTime >= uOPTIMAL_TIME) {
-               // System.out.println("Update"); //update function up 2 u coding
+                update();
+                //System.out.println(MainMenu.menuActive);
                 updates++;
                 uDeltaTime -= uOPTIMAL_TIME;
             }
@@ -81,6 +85,24 @@ public class YIMSBean extends Application implements Runnable {
         }
         stop();
     }
+    
+    public void update() {
+        if(!MainMenu.menuActive)
+        {
+            
+            if(System.currentTimeMillis()-delay>1000)
+            {
+                delay = System.currentTimeMillis();
+                System.out.println("dsdad");
+                game.startGame();
+                //
+                delay = System.currentTimeMillis();
+            }
+            
+        }
+    }
+    
+    
 
     public void stop() {
         running = false;

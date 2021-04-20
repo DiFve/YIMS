@@ -5,25 +5,40 @@
  */
 package yimsbean;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
-public class MainController {
 
+
+
+
+public class MainController implements Initializable{
     @FXML
-    private Label currentNum,lpBet,currentLP,currentEnemyLP,winLabel;
+    private Label  lpBet, currentLP, currentEnemyLP, winLabel;
+    //StringProperty temp = new SimpleStringProperty(YIMSBean.game.getPlayer().getTotal()+"/21");
+    
+    
+    @FXML
+    public Label currentNum;
+    
     @FXML
     private AnchorPane specialCardPane;
     @FXML
-    private Button drawCardBtn,keepCurrentBtn,useSpecialBtn,continueBtn;
-    Game game = new Game();
+    private Button drawCardBtn, keepCurrentBtn, useSpecialBtn, continueBtn;
     Boolean showSpecialPane = false;
     Boolean showLPDecrease = false;
     int bet = 500;
+
     public void useSpecialBtnOnAction(ActionEvent event) {
         showSpecialPane = !showSpecialPane;
         if (showSpecialPane == false) {
@@ -36,8 +51,8 @@ public class MainController {
             keepCurrentBtn.setDisable(true);
             specialCardPane.setDisable(false);
             specialCardPane.setVisible(true);
-            System.out.println(game.getPlayer().specialCardAmount());
-            for (int i = 0; i < game.getPlayer().specialCardAmount(); i++) {
+            System.out.println(YIMSBean.game.getPlayer().specialCardAmount());
+            for (int i = 0; i < YIMSBean.game.getPlayer().specialCardAmount(); i++) {
                 Button buttonTemp = (Button) specialCardPane.getChildren().get(i);
                 buttonTemp.setDisable(false);
                 buttonTemp.setVisible(true);
@@ -53,7 +68,7 @@ public class MainController {
         Button buttonTemp = (Button) specialCardPane.getChildren().get(index - '0' - 1);
         buttonTemp.setDisable(true);
         buttonTemp.setVisible(false);
-        game.getPlayer().useSpecial(index - '0' - 1);
+        YIMSBean.game.getPlayer().useSpecial(index - '0' - 1);
     }
 
     public void keepCurrentBtnOnAction(ActionEvent event) {
@@ -62,45 +77,54 @@ public class MainController {
     }
 
     public void drawCardBtnOnAction(ActionEvent event) {
-        game.getPlayer().setTotal(game.getPlayer().getTotal() + game.getDeck().draw());
-        if (game.getPlayer().isGetSpecial()) {
-            Button buttonTemp = (Button) specialCardPane.getChildren().get(game.getPlayer().specialCardAmount() - 1);
+        YIMSBean.game.getPlayer().setTotal(YIMSBean.game.getPlayer().getTotal() + YIMSBean.game.getDeck().draw());
+        if (YIMSBean.game.getPlayer().isGetSpecial()) {
+            Button buttonTemp = (Button) specialCardPane.getChildren().get(YIMSBean.game.getPlayer().specialCardAmount() - 1);
             buttonTemp.setDisable(false);
             buttonTemp.setVisible(true);
-            buttonTemp.setText(game.getPlayer().getSpecialCard()[game.getPlayer().specialCardAmount()-1].getEffect());
-            game.getPlayer().setSpecial(false);
+            buttonTemp.setText(YIMSBean.game.getPlayer().getSpecialCard()[YIMSBean.game.getPlayer().specialCardAmount() - 1].getEffect());
+            YIMSBean.game.getPlayer().setSpecial(false);
         }
-        currentNum.setText(game.getPlayer().getTotal() + "/21");
-        if (game.getPlayer().getTotal() > 21) {
+        currentNum.setText(YIMSBean.game.getPlayer().getTotal() + "/21");
+        if (YIMSBean.game.getPlayer().getTotal() > 21) {
             lpBet.setVisible(true);
-            lpBet.setText("-"+bet);
+            lpBet.setText("-" + bet);
             winLabel.setVisible(true);
             continueBtn.setVisible(true);
             continueBtn.setDisable(false);
             drawCardBtn.setDisable(true);
             keepCurrentBtn.setDisable(true);
             useSpecialBtn.setDisable(true);
-            game.getPlayer().setLP(game.getPlayer().getLP()-bet);
+            YIMSBean.game.getPlayer().setLP(YIMSBean.game.getPlayer().getLP() - bet);
         }
     }
-    public void continueBtnOnAction(ActionEvent event)
-    {
+
+    public void continueBtnOnAction(ActionEvent event) {
         continueBtn.setVisible(true);
         continueBtn.setDisable(false);
         drawCardBtn.setDisable(false);
         keepCurrentBtn.setDisable(false);
         useSpecialBtn.setDisable(false);
-        currentLP.setText(""+game.getPlayer().getLP());
-        
+        currentLP.setText("" + YIMSBean.game.getPlayer().getLP());
+
         winLabel.setVisible(false);
         continueBtn.setVisible(false);
         continueBtn.setDisable(true);
-        
+
         lpBet.setVisible(false);
-        
-        game.getPlayer().setTotal(0);
-        currentNum.setText(game.getPlayer().getTotal() + "/21");
-        game.getDeck().returnNumCardToDeck();
-        game.getDeck().setCount(0);
+
+        YIMSBean.game.getPlayer().setTotal(0);
+        currentNum.setText(YIMSBean.game.getPlayer().getTotal() + "/21");
+        YIMSBean.game.getDeck().returnNumCardToDeck();
+        YIMSBean.game.getDeck().setCount(0);
     }
+    
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        //currentNum.textProperty().bind(temp);
+    }
+
+
 }
