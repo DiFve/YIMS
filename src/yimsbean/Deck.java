@@ -68,6 +68,7 @@ public class Deck {
         return rand+1;
     }
     
+    
     public void returnNumCardToDeck()
     {
         for(int i=0;i<11;i++)
@@ -79,4 +80,6 @@ public class Deck {
     public static void setCount(int count) {
         Deck.count = count;
     }
+    
+    
 }

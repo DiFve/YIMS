@@ -23,18 +23,12 @@ import javafx.stage.Stage;
  *
  * @author jkbla
  */
-public class MainMenuController implements Initializable {
-
+public class MainMenuController {
     @FXML
     private Button gonextBtn;
-
     /**
      * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+     */   
 
     @FXML
     private void gonextBtnOnAction(ActionEvent event) throws IOException {
@@ -43,6 +37,7 @@ public class MainMenuController implements Initializable {
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(mainMenuScene);
         window.show();
+        MainMenu.menuActive=false;
     }
     
 }

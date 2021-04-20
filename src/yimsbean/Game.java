@@ -11,9 +11,19 @@ package yimsbean;
  */
 public class Game {
 
-    private Deck deck = new Deck(this);
-    private Player player = new Player(this);
-
+    private Deck deck;
+    private Player player;
+    public Game()
+    {
+        deck = new Deck(this);
+        player = new Player(this);
+    }
+    
+    public void startGame()
+    {
+       player.setTotal(player.getTotal()+deck.draw());
+    }
+    
     public Deck getDeck() {
         return deck;
     }
@@ -21,4 +31,8 @@ public class Game {
     public Player getPlayer() {
         return player;
     }
+
+    
+    
+    
 }
