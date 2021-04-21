@@ -9,7 +9,7 @@ package yimsbean;
  *
  * @author jkbla
  */
-public class Player {
+public class Enemy {
     int LP = 5000;
     int total=0;
     Card[] numCards = new Card[100];
@@ -19,7 +19,7 @@ public class Player {
     Boolean getSpecialBool = false;
     Boolean specialHandFull = false;
     Game game;
-    public Player(Game game){
+    public Enemy(Game game){
         this.game = game;
     }
     public int getTotal() {
@@ -74,4 +74,5 @@ public class Player {
     public Card[] getSpecialCard(){
         return specialCards;
     }
+    
 }
