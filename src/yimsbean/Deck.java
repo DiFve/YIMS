@@ -26,25 +26,25 @@ public class Deck {
 
         Random random = new Random();
         int specialCardChance = random.nextInt(1); // 1 in 5
-        if (specialCardChance == 0) {
-            System.out.println("Got a Special");
-            while (true) {
-                rand = random.nextInt(2);
-                if (specialCard[rand] == 0) {
-                    continue;
-                } else {
-                    if (!game.getPlayer().isSpecialHandFull()) {
-                        game.getPlayer().pushInHand(new Card(specialCardEffect[rand]));
-                        //System.out.println("you got : " + specialCardEffect[rand]);
-                        specialCard[rand]--;
-                        break;
-                    } else {
-                        System.out.println("Hand Full :(");
-                        break;
-                    }
-                }
-            }
-        }
+//        if (specialCardChance == 0) {
+//            System.out.println("Got a Special");
+//            while (true) {
+//                rand = random.nextInt(2);
+//                if (specialCard[rand] == 0) {
+//                    continue;
+//                } else {
+//                    if (!game.getPlayer().isSpecialHandFull()) {
+//                        game.getPlayer().pushInHand(new Card(specialCardEffect[rand]));
+//                        //System.out.println("you got : " + specialCardEffect[rand]);
+//                        specialCard[rand]--;
+//                        break;
+//                    } else {
+//                        System.out.println("Hand Full :(");
+//                        break;
+//                    }
+//                }
+//            }
+//        }
         if (count < 11) {
 
             while (true) {
