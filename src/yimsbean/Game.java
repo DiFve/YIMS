@@ -5,24 +5,24 @@
  */
 package yimsbean;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+
 /**
  *
  * @author user
  */
 public class Game {
-
     private Deck deck;
     private Player player;
+    private Enemy enemy;
     public Game()
     {
         deck = new Deck(this);
         player = new Player(this);
+        enemy = new Enemy(this);
     }
     
-    public void startGame()
-    {
-       player.setTotal(player.getTotal()+deck.draw());
-    }
     
     public Deck getDeck() {
         return deck;
@@ -30,6 +30,10 @@ public class Game {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public Enemy getEnemy() {
+        return enemy;
     }
 
     

@@ -30,7 +30,6 @@ import sound.soundController;
  * @author jkbla
  */
 public class MainMenuController {
-
     @FXML
     private Button gonextBtn;
     soundController click = new soundController();
@@ -41,13 +40,27 @@ public class MainMenuController {
     @FXML
 
     private void gonextBtnOnAction(ActionEvent event) throws IOException {
-        Parent mainMenuParent = FXMLLoader.load(getClass().getResource("InGameUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("InGameUI.fxml"));
+        Parent mainMenuParent = loader.load();
         Scene mainMenuScene = new Scene(mainMenuParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(mainMenuScene);
         window.show();
         MainMenu.menuActive = false;
         click.playClickSound();
+        MainController maincontroller = loader.getController();
+        maincontroller.clear();
+        maincontroller.enemyClear();
+        //Start Game
+        YIMSBean.game.getPlayer().setTotal(YIMSBean.game.getPlayer().getTotal() + YIMSBean.game.getDeck().playerDraw());
+        maincontroller.update();
+        YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() + YIMSBean.game.getDeck().enemyDraw());
+        maincontroller.enemyUpdate();
+        YIMSBean.game.getPlayer().setTotal(YIMSBean.game.getPlayer().getTotal() + YIMSBean.game.getDeck().playerDraw());
+        maincontroller.update();
+        YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() + YIMSBean.game.getDeck().enemyDraw());
+        maincontroller.enemyUpdate();
+        //Start Game
     }
 
     @FXML

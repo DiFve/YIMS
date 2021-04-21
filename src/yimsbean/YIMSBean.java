@@ -6,26 +6,31 @@
 package yimsbean;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
  *
  * @author jkbla
  */
+
 public class YIMSBean extends Application implements Runnable {
-    long delay=0;
     
+    long delay=0;
     Boolean running = false;
     public static Game game;
     private Thread gameThread;
-
+    
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("InGameUI.fxml"));
+    MainController maincontroller = loader.getController();
+    
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     public void start(Stage stage) throws Exception {
         game = new Game();
@@ -72,7 +77,7 @@ public class YIMSBean extends Application implements Runnable {
             }
 
             if (System.currentTimeMillis() - timer >= 1000) {
-                //System.out.println("UPS: " + updates + ", FPS: " + frames); //don't know why but delete = boomอ 
+                //System.out.println("UPS: " + updates + ", FPS: " + frames); //don't know why but delete = boom
                 System.out.print(""); //don't know why but delete = boom
                 updates = 0;
                 frames = 0;
@@ -90,13 +95,12 @@ public class YIMSBean extends Application implements Runnable {
             if(System.currentTimeMillis()-delay>1000)
             {
                 delay = System.currentTimeMillis();
-                System.out.println("dsdad");
-                //game.startGame();
-                delay = System.currentTimeMillis();
             }
             
         }
     }
+    
+    
 
     public void stop() {
         running = false;
