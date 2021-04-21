@@ -25,6 +25,12 @@ public class Enemy {
     public int getTotal() {
         return total;
     }
+    public void popCard(){
+        if(numCardCount > 0){
+            numCards[numCardCount-1]=null;
+            numCardCount--;   
+        }
+    }
 
     public void setTotal(int total) {
         this.total = total;
