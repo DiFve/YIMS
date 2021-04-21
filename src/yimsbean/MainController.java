@@ -201,6 +201,11 @@ public class MainController implements Initializable {
                 temp.setDisable(false);
                 temp.setVisible(true);
             }
+            else{
+                Rectangle temp = (Rectangle) playerCard.getChildren().get(i);
+                temp.setDisable(true);
+                temp.setVisible(false);
+            }
         }
         for (int i = 0; i < 7; i++) {
             Label temp = (Label) playerCardLabel.getChildren().get(i);
@@ -263,19 +268,19 @@ public class MainController implements Initializable {
         currentNum.setText(YIMSBean.game.getPlayer().getTotal() + "/21");
         YIMSBean.game.getDeck().returnNumCardToDeck();
         YIMSBean.game.getDeck().setCount(0);
-
+        YIMSBean.game.getPlayer().popCard();
         for (int i = 0; i < 7; i++) {
             Rectangle temp = (Rectangle) playerCard.getChildren().get(i);
             temp.setDisable(true);
             temp.setVisible(false);
         }
-        for (int i = 0; i < 7; i++) {
-            if (YIMSBean.game.getPlayer().getNumCard()[i] != null) {
-                Rectangle temp = (Rectangle) playerCard.getChildren().get(i);
-                temp.setDisable(false);
-                temp.setVisible(true);
-            }
-        }
+//        for (int i = 0; i < 7; i++) {
+//            if (YIMSBean.game.getPlayer().getNumCard()[i] != null) {
+//                Rectangle temp = (Rectangle) playerCard.getChildren().get(i);
+//                temp.setDisable(false);
+//                temp.setVisible(true);
+//            }
+//        }
 //        isCard1use = false;
 //        playerCard1.setVisible(false);
 //        card1.setVisible(false);

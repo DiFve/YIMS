@@ -83,7 +83,7 @@ public class Player {
         }
     }
     public void popCard(){
-        if(numCardCount > 0){
+        while(numCardCount > 0){
             numCards[numCardCount-1]=null;
             numCardCount--;   
         }
