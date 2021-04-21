@@ -25,6 +25,9 @@ public class Enemy {
     public int getTotal() {
         return total;
     }
+    public int getNumCardCount(){
+        return numCardCount;
+    }
     public void popCard(){
         if(numCardCount > 0){
             numCards[numCardCount-1]=null;
@@ -79,6 +82,10 @@ public class Enemy {
     
     public Card[] getSpecialCard(){
         return specialCards;
+    }
+    
+    public Card[] getNumCard(){
+        return numCards;
     }
     
 }

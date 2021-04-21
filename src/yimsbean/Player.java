@@ -19,6 +19,8 @@ public class Player {
     Boolean getSpecialBool = false;
     Boolean specialHandFull = false;
     Game game;
+    Boolean emptyNumHand = true;
+    
     private final String[] cardEffect = {"returnMyLatestCard", "returnEnemyLatestCard", "enemyBetx2", "drawExactCard", "drawBestCardForEnemy", "drawBestCardForMe", "changeToClosestTo24"};
     public Player(Game game){
         this.game = game;
@@ -58,6 +60,10 @@ public class Player {
                 specialHandFull = true;
             }
         }
+        emptyNumHand = false;
+    }
+    public Boolean isNumHandEmpty(){
+        return emptyNumHand;
     }
     public Boolean isGetSpecial(){
         return getSpecialBool;
@@ -70,12 +76,11 @@ public class Player {
         String temp = specialCards[specialCardIndex].getEffect();
         this.resortSpecialCard();
         if(temp.equals(cardEffect[0])){
-            System.out.println("total : " +total);
-            System.out.println("totalsss : " +(numCards[numCardCount-1].getNum()));
             this.setTotal(this.total - numCards[numCardCount-1].getNum());
             this.popCard(); //returnMyLatest
         }
         else if(temp.equals(cardEffect[1])){
+            game.getEnemy().setTotal(game.getEnemy().getTotal() - game.getEnemy().getNumCard()[game.getEnemy().getNumCardCount()-1].getNum());
             game.getEnemy().popCard();
         }
         if(specialCardCount > 0){
@@ -83,9 +88,12 @@ public class Player {
         }
     }
     public void popCard(){
-        while(numCardCount > 0){
+        if(numCardCount > 0){
             numCards[numCardCount-1]=null;
             numCardCount--;   
+        }
+        if(numCardCount > 0){
+            emptyNumHand = true;
         }
     }
     public int specialCardAmount(){

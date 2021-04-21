@@ -268,7 +268,9 @@ public class MainController implements Initializable {
         currentNum.setText(YIMSBean.game.getPlayer().getTotal() + "/21");
         YIMSBean.game.getDeck().returnNumCardToDeck();
         YIMSBean.game.getDeck().setCount(0);
-        YIMSBean.game.getPlayer().popCard();
+        while(!YIMSBean.game.getPlayer().isNumHandEmpty()){
+            YIMSBean.game.getPlayer().popCard();    
+        }
         for (int i = 0; i < 7; i++) {
             Rectangle temp = (Rectangle) playerCard.getChildren().get(i);
             temp.setDisable(true);
