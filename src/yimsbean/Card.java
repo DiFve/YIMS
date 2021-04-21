@@ -30,6 +30,8 @@ public class Card {
     public String getEffect(){
         return specialEffectName;
     }
-    
+    public int getNum(){
+        return cardNum;
+    }
     
 }
