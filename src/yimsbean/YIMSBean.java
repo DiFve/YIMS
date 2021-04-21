@@ -23,10 +23,6 @@ public class YIMSBean extends Application implements Runnable {
     long delay=0;
     Boolean running = false;
     public static Game game;
-<<<<<<< HEAD
-    
-=======
->>>>>>> master
     private Thread gameThread;
     
     FXMLLoader loader = new FXMLLoader(getClass().getResource("InGameUI.fxml"));
@@ -98,13 +94,6 @@ public class YIMSBean extends Application implements Runnable {
             
             if(System.currentTimeMillis()-delay>1000)
             {
-<<<<<<< HEAD
-                delay = System.currentTimeMillis();
-                System.out.println("dsdad");
-                game.startGame();
-=======
-                //delay = System.currentTimeMillis();
->>>>>>> master
                 delay = System.currentTimeMillis();
             }
             
