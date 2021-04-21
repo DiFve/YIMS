@@ -317,7 +317,11 @@ public class MainController implements Initializable {
         currentNum.setText(YIMSBean.game.getEnemy().getTotal() + "/21");
         YIMSBean.game.getDeck().returnNumCardToDeck();
         YIMSBean.game.getDeck().setCount(0);
-
+        
+        while(!YIMSBean.game.getEnemy().getEmptyNumHand()){
+            YIMSBean.game.getEnemy().popCard();    
+        }
+        
         isEnemyCard1use = false;
         enemyCard1.setVisible(false);
         enemy1.setVisible(false);

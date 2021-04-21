@@ -18,6 +18,15 @@ public class Enemy {
     int specialCardCount = 0;
     Boolean getSpecialBool = false;
     Boolean specialHandFull = false;
+    Boolean emptyNumHand = true;
+
+    public Boolean getEmptyNumHand() {
+        return emptyNumHand;
+    }
+
+    public void setEmptyNumHand(Boolean emptyNumHand) {
+        this.emptyNumHand = emptyNumHand;
+    }
     Game game;
     public Enemy(Game game){
         this.game = game;
