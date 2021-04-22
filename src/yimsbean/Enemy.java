@@ -21,10 +21,6 @@ public class Enemy {
     Boolean emptyNumHand = true;
     Game game;
 
-    public Boolean getEmptyNumHand() {
-        return emptyNumHand;
-    }
-
     public void setEmptyNumHand(Boolean emptyNumHand) {
         this.emptyNumHand = emptyNumHand;
     }
@@ -84,7 +80,7 @@ public class Enemy {
         this.getSpecialBool = bool;
     }
     public void useSpecial(int specialCardIndex){
-        System.out.println("at Index " + specialCardIndex + " used " + specialCards[specialCardIndex].getEffect());
+        //System.out.println("at Index " + specialCardIndex + " used " + specialCards[specialCardIndex].getEffect());
         specialCardCount--;
     }
     public int specialCardAmount(){
@@ -101,6 +97,9 @@ public class Enemy {
     
     public Card[] getNumCard(){
         return numCards;
+    }
+    public Boolean isNumHandEmpty(){
+        return emptyNumHand;
     }
     
 }
