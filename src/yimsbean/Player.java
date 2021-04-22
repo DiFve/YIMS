@@ -73,6 +73,7 @@ public class Player {
     }
     public void useSpecial(int specialCardIndex){
         System.out.println("at Index " + specialCardIndex + " used " + specialCards[specialCardIndex].getEffect());
+        
         String temp = specialCards[specialCardIndex].getEffect();
         this.resortSpecialCard();
         if(temp.equals(cardEffect[0])){
@@ -80,19 +81,21 @@ public class Player {
             this.popCard(); //returnMyLatest
         }
         else if(temp.equals(cardEffect[1])){
-            game.getEnemy().setTotal(game.getEnemy().getTotal() - game.getEnemy().getNumCard()[game.getEnemy().getNumCardCount()-1].getNum());
-            game.getEnemy().popCard();
+            System.out.println("1111111111111111111");
+            YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() - YIMSBean.game.getEnemy().getNumCard()[YIMSBean.game.getEnemy().getNumCardCount()-1].getNum());
+            YIMSBean.game.getEnemy().popCard();
         }
         if(specialCardCount > 0){
             specialCardCount--;
         }
+        System.out.println(specialCardCount);
     }
     public void popCard(){
         if(numCardCount > 0){
             numCards[numCardCount-1]=null;
             numCardCount--;   
         }
-        if(numCardCount > 0){
+        if(numCardCount == 0){
             emptyNumHand = true;
         }
     }
