@@ -56,7 +56,7 @@ public class Deck {
                 } else {
                     count++;
                     game.getPlayer().pushInHand(new Card(rand + 1));
-                    //System.out.println("Player Draw : " + (rand + 1));
+                    System.out.println("Player Draw : " + (rand + 1));
                     numCard[rand]--;
                     break;
                 }
@@ -87,7 +87,7 @@ public class Deck {
                 } else {
                     if (!game.getEnemy().isSpecialHandFull()) {
                         game.getEnemy().pushInHand(new Card(specialCardEffect[rand]));
-                        //System.out.println("enemy got : " + specialCardEffect[rand]);
+                        System.out.println("enemy got : " + specialCardEffect[rand]);
                         specialCard[rand]--;
                         break;
                     } else {

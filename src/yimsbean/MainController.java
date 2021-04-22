@@ -189,7 +189,6 @@ public class MainController implements Initializable {
 
             }
         }
-
         for (int i = 0; i < 7; i++) {
             Rectangle temp = (Rectangle) playerCard.getChildren().get(i);
             temp.setDisable(true);
