@@ -17,15 +17,29 @@ public class soundController {
 
     MediaPlayer mediaPlayer;
     String clickSound = "click.mp3";
+    public static double volume = 1.0;
 
-    public void playClickSound(){
+    public static void setVolume(double volume) {
+        soundController.volume = volume;
+    }
+
+    public void playClickSound() {
         playHitsound(clickSound);
     }
-    
+
     private void playHitsound(String fileName) {
         String path = getClass().getResource(fileName).getPath();
         Media media = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setVolume(volume);
+        mediaPlayer.play();
+    }
+
+    public void playBGsong() {
+        String path = getClass().getResource("BGsong.mp3").getPath();
+        Media media = new Media(new File(path).toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setVolume(volume);
         mediaPlayer.play();
     }
 }
