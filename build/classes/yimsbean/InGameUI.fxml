@@ -154,24 +154,24 @@
                   <Button fx:id="continueBtn" disable="true" layoutX="252.0" layoutY="410.0" mnemonicParsing="false" onAction="#continueBtnOnAction" text="Continue" visible="false" />
                   <HBox fx:id="playerCard" layoutY="575.0" prefHeight="106.0" prefWidth="567.0" spacing="20.0">
                      <children>
-                        <Rectangle fx:id="card1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                        <Rectangle fx:id="card2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                        <Rectangle fx:id="card3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                        <Rectangle fx:id="card4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                        <Rectangle fx:id="card5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                        <Rectangle fx:id="card6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                        <Rectangle fx:id="card7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                        <Rectangle fx:id="card1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="60.0" />
+                        <Rectangle fx:id="card2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="60.0" />
+                        <Rectangle fx:id="card3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="60.0" />
+                        <Rectangle fx:id="card4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="60.0" />
+                        <Rectangle fx:id="card5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="60.0" />
+                        <Rectangle fx:id="card6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="60.0" />
+                        <Rectangle fx:id="card7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="60.0" />
                      </children>
                   </HBox>
                   <HBox fx:id="playerCardLabel" layoutX="2.0" layoutY="539.0" prefHeight="36.0" prefWidth="539.0" spacing="53.0">
                      <children>
-                        <Label fx:id="playerCard1" text="Label" />
-                        <Label fx:id="playerCard2" text="Label" />
-                        <Label fx:id="playerCard3" text="Label" />
-                        <Label fx:id="playerCard4" text="Label" />
-                        <Label fx:id="playerCard6" text="Label" />
-                        <Label fx:id="playerCard5" text="Label" />
-                        <Label fx:id="playerCard7" text="Label" />
+                        <Label fx:id="playerCard1" text="Label" visible="false" />
+                        <Label fx:id="playerCard2" text="Label" visible="false" />
+                        <Label fx:id="playerCard3" text="Label" visible="false" />
+                        <Label fx:id="playerCard4" text="Label" visible="false" />
+                        <Label fx:id="playerCard6" text="Label" visible="false" />
+                        <Label fx:id="playerCard5" text="Label" visible="false" />
+                        <Label fx:id="playerCard7" text="Label" visible="false" />
                      </children>
                      <padding>
                         <Insets left="10.0" top="10.0" />
@@ -188,13 +188,17 @@
                         <Rectangle fx:id="enemy7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="60.0" />
                      </children>
                   </HBox>
-                  <Label fx:id="enemyCard1" layoutX="14.0" layoutY="164.0" text="Label" visible="false" />
-                  <Label fx:id="enemyCard2" layoutX="88.0" layoutY="164.0" text="Label" visible="false" />
-                  <Label fx:id="enemyCard3" layoutX="166.0" layoutY="164.0" text="Label" visible="false" />
-                  <Label fx:id="enemyCard4" layoutX="256.0" layoutY="164.0" text="Label" visible="false" />
-                  <Label fx:id="enemyCard5" layoutX="332.0" layoutY="164.0" text="Label" visible="false" />
-                  <Label fx:id="enemyCard6" layoutX="415.0" layoutY="164.0" text="Label" visible="false" />
-                  <Label fx:id="enemyCard7" layoutX="496.0" layoutY="164.0" text="Label" visible="false" />
+                  <HBox fx:id="enemyCardLabel" layoutX="2.0" layoutY="151.0" prefHeight="58.0" prefWidth="546.0" spacing="53.0">
+                     <children>
+                        <Label text="Label" visible="false" />
+                        <Label text="Label" visible="false" />
+                        <Label text="Label" visible="false" />
+                        <Label text="Label" visible="false" />
+                        <Label text="Label" visible="false" />
+                        <Label text="Label" visible="false" />
+                        <Label text="Label" visible="false" />
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
          </center>

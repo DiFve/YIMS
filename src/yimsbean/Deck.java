@@ -19,7 +19,7 @@ public class Deck {
     public Deck(Game game) {
         this.game = game;
     }
-    public int latestDraw,latestEnemyDraw;
+    public int latestDraw, latestEnemyDraw;
 
     public int playerDraw() {
         int rand = 0;
@@ -27,10 +27,10 @@ public class Deck {
         Random random = new Random();
         int specialCardChance = random.nextInt(1); // 1 in 5
         if (specialCardChance == 0) {
-            System.out.println("Got a Special");
+            //System.out.println("Got a Special");
             while (true) {
                 rand = random.nextInt(2);
-                if(specialCard[0]==0 &&specialCard[1]==0 &&specialCard[2]==0 &&specialCard[3]==0 &&specialCard[4]==0 &&specialCard[5]==0 &&specialCard[6]==0){
+                if (specialCard[0] == 0 && specialCard[1] == 0 && specialCard[2] == 0 && specialCard[3] == 0 && specialCard[4] == 0 && specialCard[5] == 0 && specialCard[6] == 0) {
                     System.out.println("Out of Special");
                     break;
                 }
@@ -68,10 +68,9 @@ public class Deck {
             return 0;
         }
         latestDraw = rand + 1;
-
         return rand + 1;
     }
-    
+
     public int enemyDraw() {
         int rand = 0;
 
@@ -80,7 +79,12 @@ public class Deck {
         if (specialCardChance == 0) {
             //System.out.println("Got a Special");
             while (true) {
+                
                 rand = random.nextInt(7);
+                if (specialCard[0] == 0 && specialCard[1] == 0 && specialCard[2] == 0 && specialCard[3] == 0 && specialCard[4] == 0 && specialCard[5] == 0 && specialCard[6] == 0) {
+                    System.out.println("Out of Special");
+                    break;
+                }
                 if (specialCard[rand] == 0) {
                     continue;
                 } else {
@@ -100,12 +104,12 @@ public class Deck {
 
             while (true) {
                 rand = random.nextInt(11);
-                
+
                 if (numCard[rand] == 0) {
                     continue;
                 } else {
-                    System.out.println("Enemy draw : "+(rand + 1));
-                    game.getEnemy().pushInHand(new Card(rand+1));
+                    System.out.println("Enemy draw : " + (rand + 1));
+                    game.getEnemy().pushInHand(new Card(rand + 1));
                     count++;
                     numCard[rand]--;
                     break;
@@ -119,7 +123,7 @@ public class Deck {
 
         return rand + 1;
     }
-    
+
     public void returnNumCardToDeck() {
         for (int i = 0; i < 11; i++) {
             numCard[i] = 1;
@@ -131,6 +135,7 @@ public class Deck {
             specialCard[i] = 2;
         }
     }
+
     public static void setCount(int count) {
         Deck.count = count;
     }

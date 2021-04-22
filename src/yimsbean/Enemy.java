@@ -18,7 +18,18 @@ public class Enemy {
     int specialCardCount = 0;
     Boolean getSpecialBool = false;
     Boolean specialHandFull = false;
+    Boolean emptyNumHand = true;
     Game game;
+
+    public Boolean getEmptyNumHand() {
+        return emptyNumHand;
+    }
+
+    public void setEmptyNumHand(Boolean emptyNumHand) {
+        this.emptyNumHand = emptyNumHand;
+    }
+    
+    
     public Enemy(Game game){
         this.game = game;
     }
@@ -32,6 +43,9 @@ public class Enemy {
         if(numCardCount > 0){
             numCards[numCardCount-1]=null;
             numCardCount--;   
+        }
+        if(numCardCount == 0){
+            emptyNumHand = true;
         }
     }
 
@@ -61,6 +75,7 @@ public class Enemy {
                 specialHandFull = true;
             }
         }
+        emptyNumHand = false;
     }
     public Boolean isGetSpecial(){
         return getSpecialBool;
