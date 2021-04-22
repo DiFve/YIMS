@@ -18,15 +18,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import sound.soundController;
 
 public class MainController implements Initializable {
 
+    soundController BGsong = new soundController();
     @FXML
     private Label lpBet, currentLP, currentEnemyLP, winLabel, currentNumEnemy, lpBetEnemy;
     Boolean isCard1use = false, isCard2use = false, isCard3use = false, isCard4use = false, isCard5use = false, isCard6use = false, isCard7use = false;
     Boolean isEnemyCard1use = false, isEnemyCard2use = false, isEnemyCard3use = false, isEnemyCard4use = false, isEnemyCard5use = false, isEnemyCard6use = false, isEnemyCard7use = false;
     @FXML
-    private HBox playerCard,playerCardLabel;
+    private HBox playerCard, playerCardLabel;
     //private Label playerCard1, playerCard2, playerCard3, playerCard4, playerCard5, playerCard6, playerCard7;
     @FXML
     private Rectangle enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7;
@@ -172,7 +174,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //currentNum.textProperty().bind(temp);
+        BGsong.playBGsong();
     }
 
     public void update() {
@@ -200,8 +202,7 @@ public class MainController implements Initializable {
                 Rectangle temp = (Rectangle) playerCard.getChildren().get(i);
                 temp.setDisable(false);
                 temp.setVisible(true);
-            }
-            else{
+            } else {
                 Rectangle temp = (Rectangle) playerCard.getChildren().get(i);
                 temp.setDisable(true);
                 temp.setVisible(false);
@@ -268,8 +269,8 @@ public class MainController implements Initializable {
         currentNum.setText(YIMSBean.game.getPlayer().getTotal() + "/21");
         YIMSBean.game.getDeck().returnNumCardToDeck();
         YIMSBean.game.getDeck().setCount(0);
-        while(!YIMSBean.game.getPlayer().isNumHandEmpty()){
-            YIMSBean.game.getPlayer().popCard();    
+        while (!YIMSBean.game.getPlayer().isNumHandEmpty()) {
+            YIMSBean.game.getPlayer().popCard();
         }
         for (int i = 0; i < 7; i++) {
             Rectangle temp = (Rectangle) playerCard.getChildren().get(i);

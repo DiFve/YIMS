@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +19,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -29,10 +33,27 @@ import sound.soundController;
  *
  * @author jkbla
  */
-public class MainMenuController {
+public class MainMenuController implements Initializable, ChangeListener {
+
+    soundController click = new soundController();
+
     @FXML
     private Button gonextBtn;
-    soundController click = new soundController();
+    @FXML
+    private Button creditBtn;
+    @FXML
+    private Button exitBtn;
+    @FXML
+    private Slider soundSlider;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        soundSlider.valueProperty().addListener(this);
+        soundSlider.setValue((soundController.volume) * 100.0);
+        gonextBtn.setBackground(Background.EMPTY);
+        creditBtn.setBackground(Background.EMPTY);
+        exitBtn.setBackground(Background.EMPTY);
+    }
 
     /**
      * Initializes the controller class.
@@ -78,6 +99,12 @@ public class MainMenuController {
     private void ExitAction(ActionEvent event) throws IOException {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.close();
+    }
+
+    @Override
+    public void changed(ObservableValue ov, Object t, Object t1) {
+        double value = (double) soundSlider.getValue();
+        soundController.setVolume(value * 0.01);
     }
 
 }
