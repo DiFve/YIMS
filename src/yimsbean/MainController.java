@@ -58,13 +58,16 @@ public class MainController implements Initializable {
 
     public void specialBtnUsed(ActionEvent event) {
         System.out.println("SpecialUsed");
-        Button specialCardButtonTemp = (Button) event.getSource();
-        String idTemp = specialCardButtonTemp.getId();
-        char index = idTemp.charAt(idTemp.length() - 1);
-        Button buttonTemp = (Button) specialCardPane.getChildren().get(index - '0' - 1);
-        buttonTemp.setDisable(true);
-        buttonTemp.setVisible(false);
-        YIMSBean.game.getPlayer().useSpecial(index - '0' - 1);
+        if (!specialCardPane.getChildren().isEmpty()) {
+            Button specialCardButtonTemp = (Button) event.getSource();
+            String idTemp = specialCardButtonTemp.getId();
+            System.out.println(idTemp);
+            char index = idTemp.charAt(idTemp.length() - 1);
+            Button buttonTemp = (Button) specialCardPane.getChildren().get(index - '0' - 1);
+            buttonTemp.setDisable(true);
+            buttonTemp.setVisible(false);
+            YIMSBean.game.getPlayer().useSpecial(index - '0' - 1);
+        }
         update();
     }
 
@@ -160,14 +163,17 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        BGsong.playBGsong();
+        //BGsong.playBGsong();
     }
 
     public void update() {
 
         if (YIMSBean.game.getPlayer().isGetSpecial() == true) {
-            Button buttonTemp = (Button) specialCardPane.getChildren().get(YIMSBean.game.getPlayer().specialCardAmount() - 1);
-            buttonTemp.setText(YIMSBean.game.getPlayer().getSpecialCard()[YIMSBean.game.getPlayer().specialCardAmount() - 1].getEffect());
+            if(YIMSBean.game.getPlayer().specialCardAmount()-1 >= 0){
+                Button buttonTemp = (Button) specialCardPane.getChildren().get(YIMSBean.game.getPlayer().specialCardAmount() - 1);
+                buttonTemp.setText(YIMSBean.game.getPlayer().getSpecialCard()[YIMSBean.game.getPlayer().specialCardAmount() - 1].getEffect());
+                
+            }
         }
         for (int i = 0; i < 5; i++) {
             Button buttonTemp = (Button) specialCardPane.getChildren().get(i);
@@ -175,9 +181,13 @@ public class MainController implements Initializable {
             buttonTemp.setVisible(false);
         }
         for (int i = 0; i < YIMSBean.game.getPlayer().specialCardAmount(); i++) {
-            Button buttonTemp = (Button) specialCardPane.getChildren().get(i);
-            buttonTemp.setDisable(false);
-            buttonTemp.setVisible(true);
+            if (YIMSBean.game.getPlayer().getSpecialCard()[i] != null) {
+                Button buttonTemp = (Button) specialCardPane.getChildren().get(i);
+                buttonTemp.setText(YIMSBean.game.getPlayer().getSpecialCard()[i].getEffect());
+                buttonTemp.setDisable(false);
+                buttonTemp.setVisible(true);
+
+            }
         }
 
         for (int i = 0; i < 7; i++) {
@@ -192,31 +202,41 @@ public class MainController implements Initializable {
         }
 
         for (int i = 0; i < 7; i++) {
+            Rectangle temp = (Rectangle) enemyCard.getChildren().get(i);
+            temp.setDisable(true);
+            temp.setVisible(false);
+        }
+        for (int i = 0; i < 7; i++) {
+            Label temp = (Label) enemyCardLabel.getChildren().get(i);
+            temp.setDisable(true);
+            temp.setVisible(false);
+        }
+        for (int i = 0; i < 7; i++) {
             if (YIMSBean.game.getPlayer().getNumCard()[i] != null) {
                 Rectangle temp = (Rectangle) playerCard.getChildren().get(i);
                 temp.setDisable(false);
                 temp.setVisible(true);
-//<<<<<<< HEAD
-//            }
-//
-//=======
-            } else {
-                Rectangle temp = (Rectangle) playerCard.getChildren().get(i);
-                temp.setDisable(true);
-                temp.setVisible(false);
             }
         }
-        for (int i = 0; i < 7; i++) {
-            Label temp = (Label) playerCardLabel.getChildren().get(i);
-            temp.setDisable(true);
-            temp.setVisible(false);
-//>>>>>>> dc9580bd2e760883c335cdf8df723bb3ae8c3c5a
-        }
-
         for (int i = 0; i < 7; i++) {
             if (YIMSBean.game.getPlayer().getNumCard()[i] != null) {
                 Label temp = (Label) playerCardLabel.getChildren().get(i);
                 temp.setText(String.valueOf(YIMSBean.game.getPlayer().getNumCard()[i].getNum()));
+                temp.setDisable(false);
+                temp.setVisible(true);
+            }
+        }
+        for (int i = 0; i < 7; i++) {
+            if (YIMSBean.game.getEnemy().getNumCard()[i] != null) {
+                Rectangle temp = (Rectangle) enemyCard.getChildren().get(i);
+                temp.setDisable(false);
+                temp.setVisible(true);
+            }
+        }
+        for (int i = 0; i < 7; i++) {
+            if (YIMSBean.game.getEnemy().getNumCard()[i] != null) {
+                Label temp = (Label) enemyCardLabel.getChildren().get(i);
+                temp.setText(String.valueOf(YIMSBean.game.getEnemy().getNumCard()[i].getNum()));
                 temp.setDisable(false);
                 temp.setVisible(true);
             }
@@ -259,7 +279,8 @@ public class MainController implements Initializable {
     public void clear() {
         YIMSBean.game.getPlayer().setTotal(0);
         currentNum.setText(YIMSBean.game.getPlayer().getTotal() + "/21");
-        YIMSBean.game.getDeck().returnNumCardToDeck();
+        YIMSBean.game.getDeck().resetNumCardToDeck();
+        YIMSBean.game.getDeck().resetSpecialCardToDeck();
         YIMSBean.game.getDeck().setCount(0);
         while (!YIMSBean.game.getPlayer().isNumHandEmpty()) {
             YIMSBean.game.getPlayer().popCard();
@@ -279,10 +300,10 @@ public class MainController implements Initializable {
     public void enemyClear() {
         YIMSBean.game.getEnemy().setTotal(0);
         currentNum.setText(YIMSBean.game.getEnemy().getTotal() + "/21");
-        YIMSBean.game.getDeck().returnNumCardToDeck();
+        YIMSBean.game.getDeck().resetNumCardToDeck();
         YIMSBean.game.getDeck().setCount(0);
 
-        while (!YIMSBean.game.getEnemy().getEmptyNumHand()) {
+        while (!YIMSBean.game.getEnemy().isNumHandEmpty()) {
             YIMSBean.game.getEnemy().popCard();
         }
         for (int i = 0; i < 7; i++) {

@@ -20,6 +20,7 @@ public class Player {
     Boolean specialHandFull = false;
     Game game;
     Boolean emptyNumHand = true;
+    Card returnCard;
     
     private final String[] cardEffect = {"returnMyLatestCard", "returnEnemyLatestCard", "enemyBetx2", "drawExactCard", "drawBestCardForEnemy", "drawBestCardForMe", "changeToClosestTo24"};
     public Player(Game game){
@@ -46,12 +47,19 @@ public class Player {
     private void resortSpecialCard(){
         int i=0;
         for(i=0;i<specialCardCount;i++){
-            specialCards[i]=specialCards[i+1];
+            int j;
+            j=i+1;
+            while(specialCards[j]==null){
+                j++;
+            }
+            specialCards[i]=specialCards[j];
+            specialCards[j]=null;
         }
     }
     public void pushInHand(Card drawCard){
         if(!drawCard.isSpecialCard()){
             numCards[numCardCount++] = drawCard;    
+            emptyNumHand = false;
         }
         else{
             specialCards[specialCardCount++] = drawCard;   
@@ -60,7 +68,6 @@ public class Player {
                 specialHandFull = true;
             }
         }
-        emptyNumHand = false;
     }
     public Boolean isNumHandEmpty(){
         return emptyNumHand;
@@ -72,23 +79,29 @@ public class Player {
         this.getSpecialBool = bool;
     }
     public void useSpecial(int specialCardIndex){
-        System.out.println("at Index " + specialCardIndex + " used " + specialCards[specialCardIndex].getEffect());
+        //System.out.println("at Index " + specialCardIndex + " used " + specialCards[specialCardIndex].getEffect());
         
         String temp = specialCards[specialCardIndex].getEffect();
-        this.resortSpecialCard();
-        if(temp.equals(cardEffect[0])){
+        if(temp.equals(cardEffect[0]) && !this.isNumHandEmpty()){
             this.setTotal(this.total - numCards[numCardCount-1].getNum());
+            returnCard = numCards[numCardCount-1];
+            game.getDeck().returnCard(returnCard);
+            game.getDeck().count--;
             this.popCard(); //returnMyLatest
+            //System.out.println("Current Hand : " + this.numCardCount);
         }
-        else if(temp.equals(cardEffect[1])){
-            System.out.println("1111111111111111111");
+        else if(temp.equals(cardEffect[1])&& !YIMSBean.game.getEnemy().isNumHandEmpty()){
             YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() - YIMSBean.game.getEnemy().getNumCard()[YIMSBean.game.getEnemy().getNumCardCount()-1].getNum());
+            game.getDeck().returnCard(YIMSBean.game.getEnemy().getNumCard()[YIMSBean.game.getEnemy().getNumCardCount()-1]);
+            game.getDeck().count--;
             YIMSBean.game.getEnemy().popCard();
         }
+        specialCards[specialCardIndex] = null;
         if(specialCardCount > 0){
             specialCardCount--;
         }
-        System.out.println(specialCardCount);
+        this.resortSpecialCard();
+        //System.out.println("specialCardCount : " + specialCardCount);
     }
     public void popCard(){
         if(numCardCount > 0){
