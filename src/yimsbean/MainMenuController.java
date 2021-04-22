@@ -80,7 +80,7 @@ public class MainMenuController implements Initializable, ChangeListener {
         maincontroller.enemyUpdate();
         int[] temp = YIMSBean.game.getDeck().debug();
         for(int i=0 ;i<11;i++){
-            System.out.print(temp[i] + " ");
+            System.out.print(temp[i] + " "+"sdsdsdsdsds");
             System.out.println("");
         }
         //Start Game
