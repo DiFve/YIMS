@@ -5,6 +5,7 @@
  */
 package yimsbean;
 
+import image.ImageSet;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import sound.soundController;
 
@@ -169,10 +171,10 @@ public class MainController implements Initializable {
     public void update() {
 
         if (YIMSBean.game.getPlayer().isGetSpecial() == true) {
-            if(YIMSBean.game.getPlayer().specialCardAmount()-1 >= 0){
+            if (YIMSBean.game.getPlayer().specialCardAmount() - 1 >= 0) {
                 Button buttonTemp = (Button) specialCardPane.getChildren().get(YIMSBean.game.getPlayer().specialCardAmount() - 1);
                 buttonTemp.setText(YIMSBean.game.getPlayer().getSpecialCard()[YIMSBean.game.getPlayer().specialCardAmount() - 1].getEffect());
-                
+
             }
         }
         for (int i = 0; i < 5; i++) {
@@ -214,6 +216,7 @@ public class MainController implements Initializable {
         for (int i = 0; i < 7; i++) {
             if (YIMSBean.game.getPlayer().getNumCard()[i] != null) {
                 Rectangle temp = (Rectangle) playerCard.getChildren().get(i);
+                temp.setFill(new ImagePattern(ImageSet.getCard(YIMSBean.game.getPlayer().getNumCard()[i].getNum())));
                 temp.setDisable(false);
                 temp.setVisible(true);
             }
@@ -229,6 +232,7 @@ public class MainController implements Initializable {
         for (int i = 0; i < 7; i++) {
             if (YIMSBean.game.getEnemy().getNumCard()[i] != null) {
                 Rectangle temp = (Rectangle) enemyCard.getChildren().get(i);
+                temp.setFill(new ImagePattern(ImageSet.getCard(YIMSBean.game.getEnemy().getNumCard()[i].getNum())));
                 temp.setDisable(false);
                 temp.setVisible(true);
             }
@@ -260,6 +264,7 @@ public class MainController implements Initializable {
         for (int i = 0; i < 7; i++) {
             if (YIMSBean.game.getEnemy().getNumCard()[i] != null) {
                 Rectangle temp = (Rectangle) enemyCard.getChildren().get(i);
+                temp.setFill(new ImagePattern(ImageSet.getCard(YIMSBean.game.getEnemy().getNumCard()[i].getNum())));
                 temp.setDisable(false);
                 temp.setVisible(true);
                 //System.out.println("MEEEEEEEE"+i);
