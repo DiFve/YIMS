@@ -5,7 +5,6 @@
  */
 package yimsbean;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,10 +19,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+
 
 import javafx.stage.Stage;
 import sound.soundController;
