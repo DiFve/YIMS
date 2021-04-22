@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sound.soundController;
 
 /**
  * FXML Controller class
@@ -23,6 +24,8 @@ import javafx.stage.Stage;
  * @author folnw
  */
 public class CreditController implements Initializable {
+
+    soundController click = new soundController();
 
     /**
      * Initializes the controller class.
@@ -33,7 +36,8 @@ public class CreditController implements Initializable {
     }
 
     @FXML
-    private void creditOnAction(ActionEvent event)throws IOException {
+    private void creditOnAction(ActionEvent event) throws IOException {
+        click.playClickSound();
         Parent creditParent = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
         Scene creditScene = new Scene(creditParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

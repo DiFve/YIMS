@@ -15,9 +15,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
+import sound.soundController;
 
 public class MainController implements Initializable {
 
+    soundController BGsong = new soundController();
     @FXML
     private Label lpBet, currentLP, currentEnemyLP, winLabel, currentNumEnemy, lpBetEnemy;
     @FXML
@@ -158,7 +160,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //currentNum.textProperty().bind(temp);
+        BGsong.playBGsong();
     }
 
     public void update() {
@@ -194,8 +196,21 @@ public class MainController implements Initializable {
                 Rectangle temp = (Rectangle) playerCard.getChildren().get(i);
                 temp.setDisable(false);
                 temp.setVisible(true);
+//<<<<<<< HEAD
+//            }
+//
+//=======
+            } else {
+                Rectangle temp = (Rectangle) playerCard.getChildren().get(i);
+                temp.setDisable(true);
+                temp.setVisible(false);
             }
-
+        }
+        for (int i = 0; i < 7; i++) {
+            Label temp = (Label) playerCardLabel.getChildren().get(i);
+            temp.setDisable(true);
+            temp.setVisible(false);
+//>>>>>>> dc9580bd2e760883c335cdf8df723bb3ae8c3c5a
         }
 
         for (int i = 0; i < 7; i++) {
