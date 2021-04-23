@@ -102,4 +102,15 @@ public class Enemy {
         return emptyNumHand;
     }
     
+    public void reset() {
+        total = 0;
+        numCards = new Card[100]; //num tee gep ma pen num jing jing bab +1 laew
+        specialCards = new Card[100];
+        numCardCount = 0;
+        specialCardCount = 0;
+        getSpecialBool = false;
+        specialHandFull = false;
+        emptyNumHand = true;
+
+    }
 }

@@ -68,7 +68,6 @@ public class MainMenuController implements Initializable, ChangeListener {
         click.playClickSound();
         MainController maincontroller = loader.getController();
         maincontroller.clear();
-        maincontroller.enemyClear();
         //Start Game
         YIMSBean.game.getPlayer().setTotal(YIMSBean.game.getPlayer().getTotal() + YIMSBean.game.getDeck().playerDraw());
         maincontroller.update();
