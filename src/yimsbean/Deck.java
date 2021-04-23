@@ -12,7 +12,7 @@ public class Deck {
     Card card = new Card();
     public static int count = 0;
     private int[] numCard = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    private int[] specialCard = {5, 0, 0, 0, 0, 0, 0};
+    private int[] specialCard = {10, 10, 0, 0, 0, 0, 0};
     private String specialCardEffect[] = {"returnMyLatestCard", "returnEnemyLatestCard", "enemyBetx2", "drawExactCard", "drawBestCardForEnemy", "drawBestCardForMe", "changeToClosestTo24"};
     Game game;
 
@@ -35,10 +35,11 @@ public class Deck {
                     break;
                 }
                 if (specialCard[rand] == 0) {
+                    continue;
                 } else {
                     if (!game.getPlayer().isSpecialHandFull()) {
                         game.getPlayer().pushInHand(new Card(specialCardEffect[rand]));
-                        //System.out.println("you got : " + specialCardEffect[rand]);
+                        System.out.println("you got : " + specialCardEffect[rand]);
                         specialCard[rand]--;
                         break;
                     } else {
@@ -119,18 +120,6 @@ public class Deck {
 
         return rand + 1;
     }
-
-    public void resetNumCardToDeck() {
-        for (int i = 0; i < 11; i++) {
-            numCard[i] = 1;
-        }
-    }
-
-    public void resetSpecialCardToDeck() {
-        for (int i = 0; i < 2; i++) {
-            specialCard[i] = 2;
-        }
-    }
     public void returnCard(Card card){
         if(!card.isSpecialCard()){
             numCard[card.getNum()-1]=1;
@@ -141,5 +130,11 @@ public class Deck {
     }
     public int[] debug(){
         return numCard;
+    }
+    
+    public void reset(){
+        count = 0;
+        numCard = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+        specialCard =new int[]{10, 10, 0, 0, 0, 0, 0};
     }
 }
