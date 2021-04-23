@@ -99,7 +99,7 @@
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="currentBet" layoutX="148.0" layoutY="341.0" text="5000">
+                  <Label fx:id="currentBet" layoutX="148.0" layoutY="341.0" text="500">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
@@ -199,6 +199,12 @@
                         <Label text="Label" visible="false" />
                      </children>
                   </HBox>
+                  <Label fx:id="specialUseLabel" layoutX="131.0" layoutY="247.0" text="You use return enemy card" visible="false">
+                     <font>
+                        <Font name="Pristina" size="39.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="continueBtnLabel" disable="true" layoutX="253.0" layoutY="409.0" mnemonicParsing="false" onAction="#continueBtnLabelOnAction" text="Continue" visible="false" />
                </children>
             </AnchorPane>
          </center>
