@@ -23,7 +23,7 @@ public class Player {
     Boolean emptyNumHand = true;
     Card returnCard;
 
-    private final String[] cardEffect = {"returnMyLatestCard", "returnEnemyLatestCard", "enemyBetx2", "drawExactCard", "drawBestCardForEnemy", "drawBestCardForMe", "changeToClosestTo24"};
+    private final String[] cardEffect = {"returnMyLatestCard", "returnEnemyLatestCard", "enemyBetx2", "drawCardNo3", "drawBestCardForEnemy", "drawBestCardForMe", "changeToClosestTo24", "drawCardNo4", "drawCardNo5", "drawCardNo6"};
 
     public Player(Game game) {
         this.game = game;
@@ -81,6 +81,7 @@ public class Player {
 
     public void useSpecial(int specialCardIndex) {
         //System.out.println("at Index " + specialCardIndex + " used " + specialCards[specialCardIndex].getEffect());
+        Boolean specialCanUse =false;
         String temp = specialCards[specialCardIndex].getEffect();
         if (numCardCount == 0) {
             emptyNumHand = true;
@@ -89,15 +90,9 @@ public class Player {
             this.setTotal(this.total - numCards[numCardCount - 1].getNum());
             returnCard = numCards[numCardCount - 1];
             game.getDeck().returnCard(returnCard);
-            game.getDeck().returnCard(specialCards[specialCardIndex]);
             game.getDeck().count--;
+            specialCanUse=true;
             this.popCard(); //returnMyLatest
-            specialCards[specialCardIndex] = null;
-            if (specialCardCount > 0) {
-                specialCardCount--;
-                specialHandFull = false;
-                this.resortSpecialCard(specialCardIndex);
-            }
             //System.out.println("Current Hand : " + this.numCardCount);
         } else if (this.isNumHandEmpty()) {
             System.out.println("No Card To Return");
@@ -108,20 +103,25 @@ public class Player {
             game.getDeck().returnCard(YIMSBean.game.getEnemy().getNumCard()[YIMSBean.game.getEnemy().getNumCardCount() - 1]);
             game.getDeck().count--;
             YIMSBean.game.getEnemy().popCard();
-            specialCards[specialCardIndex] = null;
-            if (specialCardCount > 0) {
-                specialHandFull = false;
-                specialCardCount--;
-                this.resortSpecialCard(specialCardIndex);
-            }
+            specialCanUse=true;
         } else if (YIMSBean.game.getEnemy().isNumHandEmpty()) {
             System.out.println("No Card To Return");
         }
         if (temp.equals(cardEffect[2])) {
             MainController.bet *= 2;
-            specialHandFull = false;
-            specialCardCount--;
-            this.resortSpecialCard(specialCardIndex);
+            
+            specialCanUse=true;
+        }
+        if(temp.equals(cardEffect[3])){
+            if(game.getDeck().getNumCard()[2] != 0){
+                this.pushInHand(new Card(3));
+                this.total+=3;
+                game.getDeck().setNumCard(2,0);
+                specialCanUse=true;
+            }
+            else {
+                System.out.println("There're no Card Number 3 in the deck");
+            }
         }
         
         if(temp.equals(cardEffect[4]))
@@ -139,9 +139,8 @@ public class Player {
                     break;
                 }
             }
-            specialHandFull = false;
-            specialCardCount--;
-            this.resortSpecialCard(specialCardIndex);
+            specialCanUse=true;
+            
         }
         if (temp.equals(cardEffect[5])) {
             int bestCard;
@@ -157,17 +156,55 @@ public class Player {
                     break;
                 }
             }
-            specialHandFull = false;
-            specialCardCount--;
-            this.resortSpecialCard(specialCardIndex);
+            specialCanUse=true;
         }
         if (temp.equals(cardEffect[6])) {
             MainController.currentMaximum = 24;
-            specialHandFull = false;
-            specialCardCount--;
-            this.resortSpecialCard(specialCardIndex);
+            specialCanUse=true;
         }
-
+        if(temp.equals(cardEffect[7])){
+            if(game.getDeck().getNumCard()[3] != 0){
+                this.pushInHand(new Card(4));
+                specialCanUse=true;
+                this.total+=4;
+                game.getDeck().setNumCard(3,0);
+            }
+            else {
+                System.out.println("There're no Card Number 4 in the deck");
+            }
+        }
+        if(temp.equals(cardEffect[8])){
+            if(game.getDeck().getNumCard()[4] != 0){
+                this.pushInHand(new Card(5));
+                specialCanUse=true;
+                this.total+=5;
+                game.getDeck().setNumCard(4,0);
+            }
+            else {
+                System.out.println("There're no Card Number 5 in the deck");
+            }
+        }
+        if(temp.equals(cardEffect[9])){
+            if(game.getDeck().getNumCard()[5] != 0){
+                this.pushInHand(new Card(6));
+                specialCanUse=true;
+                this.total+=6;
+                game.getDeck().setNumCard(5,0);
+            }
+            else {
+                System.out.println("There're no Card Number 6 in the deck");
+            }
+        }
+        if(specialCanUse){
+            if (specialCardCount > 0) {
+                specialCardCount--;
+            }
+            game.getDeck().returnCard(specialCards[specialCardIndex]);
+            specialCards[specialCardIndex] = null;
+            this.resortSpecialCard(specialCardIndex);
+            specialCanUse=false;
+            specialHandFull = false;
+        }
     }
 
     public void popCard() {
