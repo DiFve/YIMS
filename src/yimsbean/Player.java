@@ -48,16 +48,9 @@ public class Player {
     private void resortSpecialCard(int start) {
         int i;
         for (i = start; i < specialCardCount; i++) {
-            int j;
-            j = i + 1;
-            while (specialCards[j] == null && j < specialCardCount) {
-                j++;
-            }
-            if (specialCards[j] != null) {
-                specialCards[i] = specialCards[j];
-            }
-            specialCards[j] = null;
+            specialCards[i] = specialCards[i + 1];
         }
+        specialCards[specialCardCount] = null;
     }
 
     public void pushInHand(Card drawCard) {
@@ -88,33 +81,93 @@ public class Player {
 
     public void useSpecial(int specialCardIndex) {
         //System.out.println("at Index " + specialCardIndex + " used " + specialCards[specialCardIndex].getEffect());
-
         String temp = specialCards[specialCardIndex].getEffect();
-        if (temp.equals(cardEffect[0]) && !this.isNumHandEmpty()) {
+        if (numCardCount == 0) {
+            emptyNumHand = true;
+        }
+        if (temp.equals(cardEffect[0]) && !emptyNumHand) {
             this.setTotal(this.total - numCards[numCardCount - 1].getNum());
             returnCard = numCards[numCardCount - 1];
             game.getDeck().returnCard(returnCard);
+            game.getDeck().returnCard(specialCards[specialCardIndex]);
             game.getDeck().count--;
             this.popCard(); //returnMyLatest
             specialCards[specialCardIndex] = null;
+            if (specialCardCount > 0) {
+                specialCardCount--;
+                specialHandFull = false;
+                this.resortSpecialCard(specialCardIndex);
+            }
             //System.out.println("Current Hand : " + this.numCardCount);
-        }else if(this.isNumHandEmpty()){
+        } else if (this.isNumHandEmpty()) {
             System.out.println("No Card To Return");
         }
         if (temp.equals(cardEffect[1]) && !YIMSBean.game.getEnemy().isNumHandEmpty()) {
             YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() - YIMSBean.game.getEnemy().getNumCard()[YIMSBean.game.getEnemy().getNumCardCount() - 1].getNum());
+            System.out.println(YIMSBean.game.getEnemy().total + "fdfd");
             game.getDeck().returnCard(YIMSBean.game.getEnemy().getNumCard()[YIMSBean.game.getEnemy().getNumCardCount() - 1]);
             game.getDeck().count--;
             YIMSBean.game.getEnemy().popCard();
             specialCards[specialCardIndex] = null;
-        }else if(YIMSBean.game.getEnemy().isNumHandEmpty()){
+            if (specialCardCount > 0) {
+                specialHandFull = false;
+                specialCardCount--;
+                this.resortSpecialCard(specialCardIndex);
+            }
+        } else if (YIMSBean.game.getEnemy().isNumHandEmpty()) {
             System.out.println("No Card To Return");
         }
-        this.resortSpecialCard(specialCardIndex);
-        if (specialCardCount > 0) {
+        if (temp.equals(cardEffect[2])) {
+            MainController.bet *= 2;
+            specialHandFull = false;
             specialCardCount--;
+            this.resortSpecialCard(specialCardIndex);
         }
-        //System.out.println("specialCardCount : " + specialCardCount);
+        
+        if(temp.equals(cardEffect[4]))
+        {
+            int bestCard;
+            bestCard = MainController.currentMaximum - YIMSBean.game.getEnemy().total;
+            if (bestCard > 11) {
+                bestCard = 11;
+            }
+            for (int i = bestCard; i > 0; i--) {
+                if (YIMSBean.game.getDeck().getNumCard()[i - 1] == 1) {
+                    System.out.println("Vard best : " + i);
+                    YIMSBean.game.getDeck().drawExatCard(i,YIMSBean.game.getEnemy());
+                    YIMSBean.game.getEnemy().total+=i;
+                    break;
+                }
+            }
+            specialHandFull = false;
+            specialCardCount--;
+            this.resortSpecialCard(specialCardIndex);
+        }
+        if (temp.equals(cardEffect[5])) {
+            int bestCard;
+            bestCard = MainController.currentMaximum - total;
+            if (bestCard > 11) {
+                bestCard = 11;
+            }
+            for (int i = bestCard; i > 0; i--) {
+                if (YIMSBean.game.getDeck().getNumCard()[i - 1] == 1) {
+                    System.out.println("Vard best : " + i);
+                    YIMSBean.game.getDeck().drawExatCard(i,this);
+                    total+=i;
+                    break;
+                }
+            }
+            specialHandFull = false;
+            specialCardCount--;
+            this.resortSpecialCard(specialCardIndex);
+        }
+        if (temp.equals(cardEffect[6])) {
+            MainController.currentMaximum = 24;
+            specialHandFull = false;
+            specialCardCount--;
+            this.resortSpecialCard(specialCardIndex);
+        }
+
     }
 
     public void popCard() {
@@ -124,12 +177,6 @@ public class Player {
         }
         if (numCardCount == 0) {
             emptyNumHand = true;
-        }
-    }
-
-    public void resetSpecialInHand() {
-        for (int i = 0; i < specialCardCount; i++) {
-            specialCards[i] = null;
         }
     }
 
@@ -152,11 +199,8 @@ public class Player {
     public void reset() {
         total = 0;
         numCards = new Card[100]; //num tee gep ma pen num jing jing bab +1 laew
-        specialCards = new Card[100];
         numCardCount = 0;
-        specialCardCount = 0;
         getSpecialBool = false;
-        specialHandFull = false;
         emptyNumHand = true;
         returnCard = null;
 

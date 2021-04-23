@@ -23,7 +23,7 @@ public class MainController implements Initializable {
 
     soundController BGsong = new soundController();
     @FXML
-    private Label lpBet, currentLP, currentEnemyLP, winLabel, currentNumEnemy, lpBetEnemy;
+    private Label lpBet, currentLP, currentEnemyLP, winLabel, currentNumEnemy, lpBetEnemy, specialUseLabel,currentBet;
     @FXML
     private HBox playerCard, playerCardLabel;
     @FXML
@@ -35,11 +35,12 @@ public class MainController implements Initializable {
     @FXML
     private AnchorPane specialCardPane;
     @FXML
-    private Button drawCardBtn, keepCurrentBtn, useSpecialBtn, continueBtn;
+    private Button drawCardBtn, keepCurrentBtn, useSpecialBtn, continueBtn, continueBtnLabel;
 
     Boolean showSpecialPane = false;
     Boolean showLPDecrease = false;
-    int bet = 500;
+    public static int bet = 500;
+    public static int currentMaximum = 21;
 
     public void useSpecialBtnOnAction(ActionEvent event) {
         showSpecialPane = !showSpecialPane;
@@ -54,85 +55,81 @@ public class MainController implements Initializable {
             specialCardPane.setDisable(false);
             specialCardPane.setVisible(true);
         }
-        enemyUpdate();
         update();
     }
 
     public void specialBtnUsed(ActionEvent event) {
+
         System.out.println("SpecialUsed");
         if (!specialCardPane.getChildren().isEmpty()) {
             Button specialCardButtonTemp = (Button) event.getSource();
             String idTemp = specialCardButtonTemp.getId();
             char index = idTemp.charAt(idTemp.length() - 1);
             Button buttonTemp = (Button) specialCardPane.getChildren().get(index - '0' - 1);
-            buttonTemp.setDisable(true);
-            buttonTemp.setVisible(false);
+            specialUseLabel.setText("You use "+YIMSBean.game.getPlayer().getSpecialCard()[index - '0' - 1].getEffect());
             System.out.println("Special[i] : i = " + (index - '0' - 1));
             YIMSBean.game.getPlayer().useSpecial(index - '0' - 1);
+            
+            
+            continueBtnLabel.setDisable(false);
+            continueBtnLabel.setVisible(true);
+            specialUseLabel.setVisible(true);
+            specialCardPane.setDisable(true);
+
+            drawCardBtn.setDisable(true);
+            keepCurrentBtn.setDisable(true);
+            useSpecialBtn.setDisable(true);
+
         }
         System.out.println(YIMSBean.game.getPlayer().getSpecialCard());
-        update();
+
     }
 
     public void keepCurrentBtnOnAction(ActionEvent event) {
-        if (YIMSBean.game.getPlayer().total > YIMSBean.game.getEnemy().total) {
-            winLabel.setText("You win!!!");
-            winLabel.setVisible(true);
-            lpBetEnemy.setVisible(true);
-            lpBetEnemy.setText("-" + bet);
-            continueBtn.setVisible(true);
-            continueBtn.setDisable(false);
-            drawCardBtn.setDisable(true);
-            keepCurrentBtn.setDisable(true);
-            useSpecialBtn.setDisable(true);
-            YIMSBean.game.getEnemy().setLP(YIMSBean.game.getEnemy().getLP() - bet);
-            currentEnemyLP.setText("" + YIMSBean.game.getEnemy().getLP());
-        } else if (YIMSBean.game.getPlayer().total == YIMSBean.game.getEnemy().total) {
-            winLabel.setVisible(true);
-            winLabel.setText("Draw");
-            continueBtn.setVisible(true);
-            continueBtn.setDisable(false);
-            drawCardBtn.setDisable(true);
-            keepCurrentBtn.setDisable(true);
-            useSpecialBtn.setDisable(true);
+        if (YIMSBean.game.getEnemy().enough) {
+            if (YIMSBean.game.getPlayer().total > YIMSBean.game.getEnemy().total) {
+                winLabel.setText("You win!!!");
+                winLabel.setVisible(true);
+                lpBetEnemy.setVisible(true);
+                lpBetEnemy.setText("-" + bet);
+                continueBtn.setVisible(true);
+                continueBtn.setDisable(false);
+                drawCardBtn.setDisable(true);
+                keepCurrentBtn.setDisable(true);
+                useSpecialBtn.setDisable(true);
+                YIMSBean.game.getEnemy().setLP(YIMSBean.game.getEnemy().getLP() - bet);
+                currentEnemyLP.setText("" + YIMSBean.game.getEnemy().getLP());
+            } else if (YIMSBean.game.getPlayer().total == YIMSBean.game.getEnemy().total) {
+                winLabel.setVisible(true);
+                winLabel.setText("Draw");
+                continueBtn.setVisible(true);
+                continueBtn.setDisable(false);
+                drawCardBtn.setDisable(true);
+                keepCurrentBtn.setDisable(true);
+                useSpecialBtn.setDisable(true);
+            } else {
+                winLabel.setVisible(true);
+                winLabel.setText("You lose :(");
+                lpBet.setVisible(true);
+                lpBet.setText("-" + bet);
+                continueBtn.setVisible(true);
+                continueBtn.setDisable(false);
+                drawCardBtn.setDisable(true);
+                keepCurrentBtn.setDisable(true);
+                useSpecialBtn.setDisable(true);
+                YIMSBean.game.getPlayer().setLP(YIMSBean.game.getPlayer().getLP() - bet);
+                currentLP.setText("" + YIMSBean.game.getPlayer().getLP());
+            }
         } else {
-            winLabel.setVisible(true);
-            winLabel.setText("You lose :(");
-            lpBet.setVisible(true);
-            lpBet.setText("-" + bet);
-            continueBtn.setVisible(true);
-            continueBtn.setDisable(false);
-            drawCardBtn.setDisable(true);
-            keepCurrentBtn.setDisable(true);
-            useSpecialBtn.setDisable(true);
-            YIMSBean.game.getPlayer().setLP(YIMSBean.game.getPlayer().getLP() - bet);
-            currentLP.setText("" + YIMSBean.game.getPlayer().getLP());
+            enemyDrawMethod();
         }
+
         update();
     }
 
     public void drawCardBtnOnAction(ActionEvent event) {
-        YIMSBean.game.getPlayer().setTotal(YIMSBean.game.getPlayer().getTotal() + YIMSBean.game.getDeck().playerDraw());
-        if (YIMSBean.game.getPlayer().isGetSpecial()) {
-            update();
-            YIMSBean.game.getPlayer().setSpecial(false);
-        }
-        if (YIMSBean.game.getEnemy().total < 18) {
-            YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() + YIMSBean.game.getDeck().enemyDraw());
-            enemyUpdate();
-        }
-        if (YIMSBean.game.getPlayer().getTotal() > 21) {
-            lpBet.setVisible(true);
-            lpBet.setText("-" + bet);
-            winLabel.setText("You lose :(");
-            winLabel.setVisible(true);
-            continueBtn.setVisible(true);
-            continueBtn.setDisable(false);
-            drawCardBtn.setDisable(true);
-            keepCurrentBtn.setDisable(true);
-            useSpecialBtn.setDisable(true);
-            YIMSBean.game.getPlayer().setLP(YIMSBean.game.getPlayer().getLP() - bet);
-        }
+        playerDrawMethod();
+        enemyDrawMethod();
         update();
     }
 
@@ -149,18 +146,30 @@ public class MainController implements Initializable {
         continueBtn.setDisable(true);
         lpBetEnemy.setVisible(false);
         lpBet.setVisible(false);
-        YIMSBean.game.getPlayer().resetSpecialInHand();
-        clear();        
+        clear();
         //Start Game
         YIMSBean.game.getPlayer().setTotal(YIMSBean.game.getPlayer().getTotal() + YIMSBean.game.getDeck().playerDraw());
         update();
         YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() + YIMSBean.game.getDeck().enemyDraw());
-        enemyUpdate();
+        //enemyUpdate();
         YIMSBean.game.getPlayer().setTotal(YIMSBean.game.getPlayer().getTotal() + YIMSBean.game.getDeck().playerDraw());
         update();
         YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() + YIMSBean.game.getDeck().enemyDraw());
-        enemyUpdate();
+        update();
+        //enemyUpdate();
         //Start Game
+    }
+
+    public void continueBtnLabelOnAction(ActionEvent event) {
+        continueBtnLabel.setDisable(true);
+        continueBtnLabel.setVisible(false);
+        specialUseLabel.setVisible(false);
+        specialCardPane.setDisable(false);
+
+        drawCardBtn.setDisable(false);
+        keepCurrentBtn.setDisable(false);
+        useSpecialBtn.setDisable(false);
+        update();
     }
 
     @Override
@@ -168,11 +177,29 @@ public class MainController implements Initializable {
         //BGsong.playBGsong();
     }
 
-    public void update() {
+    public void playerDrawMethod() {
+        YIMSBean.game.getPlayer().setTotal(YIMSBean.game.getPlayer().getTotal() + YIMSBean.game.getDeck().playerDraw());
+        if (YIMSBean.game.getPlayer().isGetSpecial()) {
+            update();
+            YIMSBean.game.getPlayer().setSpecial(false);
+        }
+    }
 
-            System.out.println(YIMSBean.game.getPlayer().specialCardAmount());
+    public void enemyDrawMethod() {
+        if (YIMSBean.game.getEnemy().total < 18) {
+            YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() + YIMSBean.game.getDeck().enemyDraw());
+            YIMSBean.game.getEnemy().enough = false;
+        } else {
+            YIMSBean.game.getEnemy().enough = true;
+        }
+    }
+
+    public void update() {
+        System.out.println("Current bet : "+bet);
+        currentBet.setText(bet+"");
+        System.out.println(YIMSBean.game.getPlayer().specialCardAmount());
         if (YIMSBean.game.getPlayer().isGetSpecial() == true) {
-            if (YIMSBean.game.getPlayer().specialCardAmount() - 1 >= 0 && YIMSBean.game.getPlayer().getSpecialCard()[YIMSBean.game.getPlayer().specialCardAmount() - 1]!=null) {
+            if (YIMSBean.game.getPlayer().specialCardAmount() - 1 >= 0 && YIMSBean.game.getPlayer().getSpecialCard()[YIMSBean.game.getPlayer().specialCardAmount() - 1] != null) {
                 Button buttonTemp = (Button) specialCardPane.getChildren().get(YIMSBean.game.getPlayer().specialCardAmount() - 1);
                 buttonTemp.setText(YIMSBean.game.getPlayer().getSpecialCard()[YIMSBean.game.getPlayer().specialCardAmount() - 1].getEffect());
 
@@ -189,7 +216,6 @@ public class MainController implements Initializable {
                 buttonTemp.setText(YIMSBean.game.getPlayer().getSpecialCard()[i].getEffect());
                 buttonTemp.setDisable(false);
                 buttonTemp.setVisible(true);
-
             }
         }
         for (int i = 0; i < 7; i++) {
@@ -245,47 +271,28 @@ public class MainController implements Initializable {
                 temp.setVisible(true);
             }
         }
-        currentNum.setText(YIMSBean.game.getPlayer().getTotal() + "/21");
-    }
-
-    public void enemyUpdate() {
-
-        for (int i = 0; i < 7; i++) {
-            Rectangle temp = (Rectangle) enemyCard.getChildren().get(i);
-            temp.setDisable(true);
-            temp.setVisible(false);
+        currentNum.setText(YIMSBean.game.getPlayer().getTotal() + "/"+currentMaximum);
+        currentNumEnemy.setText(YIMSBean.game.getEnemy().getTotal() + "/"+currentMaximum);
+        if (YIMSBean.game.getPlayer().getTotal() > currentMaximum) {
+            lpBet.setVisible(true);
+            lpBet.setText("-" + bet);
+            winLabel.setText("You lose :(");
+            winLabel.setVisible(true);
+            continueBtn.setVisible(true);
+            continueBtn.setDisable(false);
+            drawCardBtn.setDisable(true);
+            keepCurrentBtn.setDisable(true);
+            useSpecialBtn.setDisable(true);
+            YIMSBean.game.getPlayer().setLP(YIMSBean.game.getPlayer().getLP() - bet);
         }
-        for (int i = 0; i < 7; i++) {
-            Label temp = (Label) enemyCardLabel.getChildren().get(i);
-            temp.setDisable(true);
-            temp.setVisible(false);
-        }
-
-        for (int i = 0; i < 7; i++) {
-            if (YIMSBean.game.getEnemy().getNumCard()[i] != null) {
-                Rectangle temp = (Rectangle) enemyCard.getChildren().get(i);
-                temp.setFill(new ImagePattern(ImageSet.getCard(YIMSBean.game.getEnemy().getNumCard()[i].getNum())));
-                temp.setDisable(false);
-                temp.setVisible(true);
-                //System.out.println("MEEEEEEEE"+i);
-            }
-        }
-        for (int i = 0; i < 7; i++) {
-            if (YIMSBean.game.getEnemy().getNumCard()[i] != null) {
-                Label temp = (Label) enemyCardLabel.getChildren().get(i);
-                temp.setText(String.valueOf(YIMSBean.game.getEnemy().getNumCard()[i].getNum()));
-                temp.setDisable(false);
-                temp.setVisible(true);
-            }
-        }
-        currentNumEnemy.setText(YIMSBean.game.getEnemy().getTotal() + "/21");
     }
 
     public void clear() {
         YIMSBean.game.getPlayer().reset();
-        currentNum.setText(YIMSBean.game.getPlayer().getTotal() + "/21");
+        
+        currentNum.setText(YIMSBean.game.getPlayer().getTotal() + "/"+currentMaximum);
         YIMSBean.game.getEnemy().reset();
-        currentNum.setText(YIMSBean.game.getEnemy().getTotal() + "/21");
+        currentNum.setText(YIMSBean.game.getEnemy().getTotal() + "/"+currentMaximum);
         YIMSBean.game.getDeck().reset();
         while (!YIMSBean.game.getPlayer().isNumHandEmpty()) {
             YIMSBean.game.getPlayer().popCard();
@@ -313,5 +320,7 @@ public class MainController implements Initializable {
             temp.setDisable(true);
             temp.setVisible(false);
         }
+        bet = 500;
+        currentMaximum = 21;
     }
 }

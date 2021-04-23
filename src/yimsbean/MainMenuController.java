@@ -72,11 +72,12 @@ public class MainMenuController implements Initializable, ChangeListener {
         YIMSBean.game.getPlayer().setTotal(YIMSBean.game.getPlayer().getTotal() + YIMSBean.game.getDeck().playerDraw());
         maincontroller.update();
         YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() + YIMSBean.game.getDeck().enemyDraw());
-        maincontroller.enemyUpdate();
+        maincontroller.update();
         YIMSBean.game.getPlayer().setTotal(YIMSBean.game.getPlayer().getTotal() + YIMSBean.game.getDeck().playerDraw());
         maincontroller.update();
         YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() + YIMSBean.game.getDeck().enemyDraw());
-        maincontroller.enemyUpdate();
+        maincontroller.update();
+        //maincontroller.enemyUpdate();
         int[] temp = YIMSBean.game.getDeck().debug();
         for(int i=0 ;i<11;i++){
             System.out.print(temp[i] + " "+"sdsdsdsdsds");

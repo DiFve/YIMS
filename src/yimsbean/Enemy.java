@@ -19,6 +19,7 @@ public class Enemy {
     Boolean getSpecialBool = false;
     Boolean specialHandFull = false;
     Boolean emptyNumHand = true;
+    Boolean enough = false;
     Game game;
 
     public void setEmptyNumHand(Boolean emptyNumHand) {
@@ -105,12 +106,9 @@ public class Enemy {
     public void reset() {
         total = 0;
         numCards = new Card[100]; //num tee gep ma pen num jing jing bab +1 laew
-        specialCards = new Card[100];
         numCardCount = 0;
-        specialCardCount = 0;
         getSpecialBool = false;
-        specialHandFull = false;
         emptyNumHand = true;
-
+        enough = false;
     }
 }
