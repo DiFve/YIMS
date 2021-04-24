@@ -12,7 +12,7 @@ public class Deck {
     Card card = new Card();
     public static int count = 0;
     private int[] numCard = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    private int[] specialCard = {0, 0, 0, 10, 0, 0, 0, 10, 10, 10};
+    private int[] specialCard = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
     private String specialCardEffect[] = {"returnMyLatestCard", "returnEnemyLatestCard", "enemyBetx2", "drawCardNo3", "drawBestCardForEnemy", "drawBestCardForMe", "changeToClosestTo24", "drawCardNo4", "drawCardNo5", "drawCardNo6"};
     Game game;
 
@@ -34,7 +34,7 @@ public class Deck {
         int rand = 0;
 
         Random random = new Random();
-        int specialCardChance = random.nextInt(1); // 1 in 5
+        int specialCardChance = random.nextInt(3); // 1 in 3
         if (specialCardChance == 0) {
             //System.out.println("Got a Special");
             while (true) {
@@ -83,7 +83,7 @@ public class Deck {
         int rand = 0;
 
         Random random = new Random();
-        int specialCardChance = random.nextInt(1); // 1 in 5
+        int specialCardChance = random.nextInt(3); // 1 in 3
         if (specialCardChance == 0) {
             //System.out.println("Got a Special");
             while (true) {

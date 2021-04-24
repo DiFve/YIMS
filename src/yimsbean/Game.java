@@ -20,7 +20,7 @@ public class Game {
     {
         deck = new Deck(this);
         player = new Player(this);
-        enemy = new Enemy(this);
+        enemy = new Enemy(this); 
     }
     
     
