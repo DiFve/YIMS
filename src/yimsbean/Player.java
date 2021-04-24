@@ -80,7 +80,6 @@ public class Player {
     }
 
     public void useSpecial(int specialCardIndex) {
-        //System.out.println("at Index " + specialCardIndex + " used " + specialCards[specialCardIndex].getEffect());
         Boolean specialCanUse =false;
         String temp = specialCards[specialCardIndex].getEffect();
         if (numCardCount == 0) {
@@ -98,9 +97,9 @@ public class Player {
             System.out.println("No Card To Return");
         }
         if (temp.equals(cardEffect[1]) && !YIMSBean.game.getEnemy().isNumHandEmpty()) {
-            YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() - YIMSBean.game.getEnemy().getNumCard()[YIMSBean.game.getEnemy().getNumCardCount() - 1].getNum());
+            YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() - YIMSBean.game.getEnemy().getNumCard()[YIMSBean.game.getEnemy().numCardCount - 1].getNum());
             System.out.println(YIMSBean.game.getEnemy().total + "fdfd");
-            game.getDeck().returnCard(YIMSBean.game.getEnemy().getNumCard()[YIMSBean.game.getEnemy().getNumCardCount() - 1]);
+            game.getDeck().returnCard(YIMSBean.game.getEnemy().getNumCard()[YIMSBean.game.getEnemy().numCardCount - 1]);
             game.getDeck().count--;
             YIMSBean.game.getEnemy().popCard();
             specialCanUse=true;
@@ -108,8 +107,7 @@ public class Player {
             System.out.println("No Card To Return");
         }
         if (temp.equals(cardEffect[2])) {
-            MainController.bet *= 2;
-            
+            MainController.betEnemy *= 2;
             specialCanUse=true;
         }
         if(temp.equals(cardEffect[3])){
@@ -117,11 +115,12 @@ public class Player {
                 this.pushInHand(new Card(3));
                 this.total+=3;
                 game.getDeck().setNumCard(2,0);
-                specialCanUse=true;
+                
             }
             else {
                 System.out.println("There're no Card Number 3 in the deck");
             }
+            specialCanUse=true;
         }
         
         if(temp.equals(cardEffect[4]))
@@ -165,35 +164,37 @@ public class Player {
         if(temp.equals(cardEffect[7])){
             if(game.getDeck().getNumCard()[3] != 0){
                 this.pushInHand(new Card(4));
-                specialCanUse=true;
+                
                 this.total+=4;
                 game.getDeck().setNumCard(3,0);
             }
             else {
                 System.out.println("There're no Card Number 4 in the deck");
             }
+            specialCanUse=true;
         }
         if(temp.equals(cardEffect[8])){
             if(game.getDeck().getNumCard()[4] != 0){
                 this.pushInHand(new Card(5));
-                specialCanUse=true;
+                
                 this.total+=5;
                 game.getDeck().setNumCard(4,0);
             }
             else {
                 System.out.println("There're no Card Number 5 in the deck");
             }
+            specialCanUse=true;
         }
         if(temp.equals(cardEffect[9])){
             if(game.getDeck().getNumCard()[5] != 0){
                 this.pushInHand(new Card(6));
-                specialCanUse=true;
                 this.total+=6;
                 game.getDeck().setNumCard(5,0);
             }
             else {
                 System.out.println("There're no Card Number 6 in the deck");
             }
+            specialCanUse=true;
         }
         if(specialCanUse){
             if (specialCardCount > 0) {

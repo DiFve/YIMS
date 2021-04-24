@@ -12,7 +12,7 @@ public class Deck {
     Card card = new Card();
     public static int count = 0;
     private int[] numCard = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    private int[] specialCard = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
+    private int[] specialCard = {0, 0, 0, 10, 0, 0, 0, 10, 10, 10};
     private String specialCardEffect[] = {"returnMyLatestCard", "returnEnemyLatestCard", "enemyBetx2", "drawCardNo3", "drawBestCardForEnemy", "drawBestCardForMe", "changeToClosestTo24", "drawCardNo4", "drawCardNo5", "drawCardNo6"};
     Game game;
 
@@ -87,21 +87,22 @@ public class Deck {
         if (specialCardChance == 0) {
             //System.out.println("Got a Special");
             while (true) {
-
                 rand = random.nextInt(10);
                 if (specialCard[0] == 0 && specialCard[1] == 0 && specialCard[2] == 0 && specialCard[3] == 0 && specialCard[4] == 0 && specialCard[5] == 0 && specialCard[6] == 0 && specialCard[7] == 0 && specialCard[8] == 0 && specialCard[9] == 0) {
                     System.out.println("Out of Special");
                     break;
                 }
                 if (specialCard[rand] == 0) {
+                    continue;
                 } else {
                     if (!game.getEnemy().isSpecialHandFull()) {
+                        System.out.println("sfdsjfodlsifjsilfdlksfkljds");
                         game.getEnemy().pushInHand(new Card(specialCardEffect[rand]));
-                        System.out.println("enemy got : " + specialCardEffect[rand]);
+                        System.out.println("you got : " + specialCardEffect[rand]);
                         specialCard[rand]--;
                         break;
                     } else {
-                        System.out.println("Enemy Hand Full :(");
+                        //System.out.println("Hand Full :(");
                         break;
                     }
                 }
@@ -111,12 +112,11 @@ public class Deck {
 
             while (true) {
                 rand = random.nextInt(11);
-
                 if (numCard[rand] == 0) {
                 } else {
-                    //System.out.println("Enemy draw : " + (rand + 1));
-                    game.getEnemy().pushInHand(new Card(rand + 1));
                     count++;
+                    game.getEnemy().pushInHand(new Card(rand + 1));
+                    System.out.println("Player Draw : " + (rand + 1));
                     numCard[rand]--;
                     break;
                 }
@@ -125,8 +125,7 @@ public class Deck {
             System.out.println("Out of Deck");
             return 0;
         }
-        latestEnemyDraw = rand + 1;
-
+        latestDraw = rand + 1;
         return rand + 1;
     }
 
