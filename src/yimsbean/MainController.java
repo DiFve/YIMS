@@ -41,7 +41,60 @@ public class MainController implements Initializable {
     Boolean showLPDecrease = false;
     public static int bet = 500;
     public static int currentMaximum = 21;
+    @FXML
+    private Rectangle card1;
+    @FXML
+    private Rectangle card2;
+    @FXML
+    private Rectangle card3;
+    @FXML
+    private Rectangle card4;
+    @FXML
+    private Rectangle card5;
+    @FXML
+    private Rectangle card6;
+    @FXML
+    private Rectangle card7;
+    @FXML
+    private Label playerCard1;
+    @FXML
+    private Label playerCard2;
+    @FXML
+    private Label playerCard3;
+    @FXML
+    private Label playerCard4;
+    @FXML
+    private Label playerCard6;
+    @FXML
+    private Label playerCard5;
+    @FXML
+    private Label playerCard7;
+    @FXML
+    private Rectangle enemy1;
+    @FXML
+    private Rectangle enemy2;
+    @FXML
+    private Rectangle enemy3;
+    @FXML
+    private Rectangle enemy4;
+    @FXML
+    private Rectangle enemy5;
+    @FXML
+    private Rectangle enemy6;
+    @FXML
+    private Rectangle enemy7;
+    @FXML
+    private Button specialCard1;
+    @FXML
+    private Button specialCard2;
+    @FXML
+    private Button specialCard3;
+    @FXML
+    private Button specialCard4;
+    @FXML
+    private Button specialCard5;
 
+    @FXML
     public void useSpecialBtnOnAction(ActionEvent event) {
         showSpecialPane = !showSpecialPane;
         if (showSpecialPane == false) {
@@ -58,6 +111,7 @@ public class MainController implements Initializable {
         update();
     }
 
+    @FXML
     public void specialBtnUsed(ActionEvent event) {
 
         System.out.println("SpecialUsed");
@@ -85,6 +139,7 @@ public class MainController implements Initializable {
 
     }
 
+    @FXML
     public void keepCurrentBtnOnAction(ActionEvent event) {
         if (YIMSBean.game.getEnemy().enough) {
             if (YIMSBean.game.getPlayer().total > YIMSBean.game.getEnemy().total) {
@@ -127,12 +182,14 @@ public class MainController implements Initializable {
         update();
     }
 
+    @FXML
     public void drawCardBtnOnAction(ActionEvent event) {
         playerDrawMethod();
         enemyDrawMethod();
         update();
     }
 
+    @FXML
     public void continueBtnOnAction(ActionEvent event) {
         continueBtn.setVisible(true);
         continueBtn.setDisable(false);
@@ -160,6 +217,7 @@ public class MainController implements Initializable {
         //Start Game
     }
 
+    @FXML
     public void continueBtnLabelOnAction(ActionEvent event) {
         continueBtnLabel.setDisable(true);
         continueBtnLabel.setVisible(false);
