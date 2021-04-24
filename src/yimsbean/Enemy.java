@@ -125,10 +125,10 @@ public class Enemy {
             specialCanUse = true;
         }
 
-        if (temp.equals(cardEffect[4])) {
+        if (temp.equals(cardEffect[4])) { //draw best enemy
             int bestCard;
             bestCard = MainController.currentMaximum - YIMSBean.game.getPlayer().total;
-            if (bestCard > 11) {
+            if (bestCard > 11 || bestCard == 0) {
                 bestCard = 11;
             }
             for (int i = bestCard; i > 0; i--) {
@@ -142,7 +142,7 @@ public class Enemy {
             specialCanUse = true;
 
         }
-        if (temp.equals(cardEffect[5])) {
+        if (temp.equals(cardEffect[5])) { //draw best me
             int bestCard;
             bestCard = MainController.currentMaximum - total;
             if (bestCard > 11) {

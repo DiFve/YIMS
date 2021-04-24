@@ -127,7 +127,7 @@ public class Player {
         {
             int bestCard;
             bestCard = MainController.currentMaximum - YIMSBean.game.getEnemy().total;
-            if (bestCard > 11) {
+            if (bestCard > 11 || bestCard == 0) {
                 bestCard = 11;
             }
             for (int i = bestCard; i > 0; i--) {
