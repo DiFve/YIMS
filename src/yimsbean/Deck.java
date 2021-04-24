@@ -12,8 +12,8 @@ public class Deck {
     Card card = new Card();
     public static int count = 0;
     private int[] numCard = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    private int[] specialCard = {0, 0, 0, 0, 10, 0, 0};
-    private String specialCardEffect[] = {"returnMyLatestCard", "returnEnemyLatestCard", "enemyBetx2", "drawExactCard", "drawBestCardForEnemy", "drawBestCardForMe", "changeToClosestTo24"};
+    private int[] specialCard = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
+    private String specialCardEffect[] = {"returnMyLatestCard", "returnEnemyLatestCard", "enemyBetx2", "drawCardNo3", "drawBestCardForEnemy", "drawBestCardForMe", "changeToClosestTo24", "drawCardNo4", "drawCardNo5", "drawCardNo6"};
     Game game;
 
     public Deck(Game game) {
@@ -38,8 +38,8 @@ public class Deck {
         if (specialCardChance == 0) {
             //System.out.println("Got a Special");
             while (true) {
-                rand = random.nextInt(7);
-                if (specialCard[0] == 0 && specialCard[1] == 0 && specialCard[2] == 0 && specialCard[3] == 0 && specialCard[4] == 0 && specialCard[5] == 0 && specialCard[6] == 0) {
+                rand = random.nextInt(10);
+                if (specialCard[0] == 0 && specialCard[1] == 0 && specialCard[2] == 0 && specialCard[3] == 0 && specialCard[4] == 0 && specialCard[5] == 0 && specialCard[6] == 0 && specialCard[7] == 0 && specialCard[8] == 0 && specialCard[9] == 0) {
                     System.out.println("Out of Special");
                     break;
                 }
@@ -88,8 +88,8 @@ public class Deck {
             //System.out.println("Got a Special");
             while (true) {
 
-                rand = random.nextInt(7);
-                if (specialCard[0] == 0 && specialCard[1] == 0 && specialCard[2] == 0 && specialCard[3] == 0 && specialCard[4] == 0 && specialCard[5] == 0 && specialCard[6] == 0) {
+                rand = random.nextInt(10);
+                if (specialCard[0] == 0 && specialCard[1] == 0 && specialCard[2] == 0 && specialCard[3] == 0 && specialCard[4] == 0 && specialCard[5] == 0 && specialCard[6] == 0 && specialCard[7] == 0 && specialCard[8] == 0 && specialCard[9] == 0) {
                     System.out.println("Out of Special");
                     break;
                 }
@@ -171,5 +171,9 @@ public class Deck {
             game.getEnemy().pushInHand(new Card(num));
         }
         numCard[num-1] = 0;
+    }
+    
+    public void setNumCard(int index,int value){
+        numCard[index]=value;
     }
 }
