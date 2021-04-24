@@ -101,17 +101,32 @@
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="34.0" layoutY="341.0" prefHeight="20.0" prefWidth="86.0" text="Current Bet">
+                  <Label layoutX="42.0" layoutY="319.0" prefHeight="20.0" prefWidth="86.0" text="Your Bet">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="currentBet" layoutX="148.0" layoutY="341.0" text="500">
+                  <Label fx:id="yourBet" layoutX="156.0" layoutY="319.0" text="500">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="131.0" layoutY="341.0" text=":">
+                  <Label layoutX="139.0" layoutY="319.0" text=":">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="41.0" layoutY="269.0" prefHeight="20.0" prefWidth="86.0" text="Enemy Bet">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="enemyBet" layoutX="155.0" layoutY="269.0" text="500">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="138.0" layoutY="269.0" text=":">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>

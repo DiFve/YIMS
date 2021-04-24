@@ -21,7 +21,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.Background;
 
-
 import javafx.stage.Stage;
 import sound.soundController;
 
@@ -69,18 +68,18 @@ public class MainMenuController implements Initializable, ChangeListener {
         MainController maincontroller = loader.getController();
         maincontroller.clear();
         //Start Game
-        YIMSBean.game.getPlayer().setTotal(YIMSBean.game.getPlayer().getTotal() + YIMSBean.game.getDeck().playerDraw());
+        maincontroller.playerDrawMethod();
         maincontroller.update();
-        YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() + YIMSBean.game.getDeck().enemyDraw());
+        maincontroller.enemyDrawMethod();
         maincontroller.update();
-        YIMSBean.game.getPlayer().setTotal(YIMSBean.game.getPlayer().getTotal() + YIMSBean.game.getDeck().playerDraw());
+        maincontroller.playerDrawMethod();
         maincontroller.update();
-        YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() + YIMSBean.game.getDeck().enemyDraw());
+        maincontroller.enemyDrawMethod();
         maincontroller.update();
         //maincontroller.enemyUpdate();
         int[] temp = YIMSBean.game.getDeck().debug();
-        for(int i=0 ;i<11;i++){
-            System.out.print(temp[i] + " "+"sdsdsdsdsds");
+        for (int i = 0; i < 11; i++) {
+            System.out.print(temp[i] + " " + "sdsdsdsdsds");
             System.out.println("");
         }
         //Start Game
