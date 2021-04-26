@@ -19,6 +19,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 
 import javafx.stage.Stage;
@@ -41,6 +44,12 @@ public class MainMenuController implements Initializable, ChangeListener {
     private Button exitBtn;
     @FXML
     private Slider soundSlider;
+    @FXML
+    private ImageView PlayAction;
+    @FXML
+    private ImageView CreditAction;
+    @FXML
+    private ImageView ExitAction;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -104,6 +113,42 @@ public class MainMenuController implements Initializable, ChangeListener {
     public void changed(ObservableValue ov, Object t, Object t1) {
         double value = (double) soundSlider.getValue();
         soundController.setVolume(value * 0.01);
+    }
+
+    @FXML
+    private void PlayExit(MouseEvent event) {
+        Image Play0 = new Image("/image/Play0.png");
+        PlayAction.setImage(Play0);
+    }
+
+    @FXML
+    private void PlayEnter(MouseEvent event) {
+        Image Play1 = new Image("/image/Play1.png");
+        PlayAction.setImage(Play1);
+    }
+
+    @FXML
+    private void CreditExit(MouseEvent event) {
+        Image Credit0 = new Image("/image/Credit0.png");
+        CreditAction.setImage(Credit0);
+    }
+
+    @FXML
+    private void CreditEnter(MouseEvent event) {
+        Image Credit1 = new Image("/image/Credit1.png");
+        CreditAction.setImage(Credit1);
+    }
+
+    @FXML
+    private void ExitExit(MouseEvent event) {
+        Image Exite0 = new Image("/image/EXIT0.png");
+        ExitAction.setImage(Exite0);
+    }
+
+    @FXML
+    private void ExitEnter(MouseEvent event) {
+        Image Exite1 = new Image("/image/EXIT1.png");
+        ExitAction.setImage(Exite1);
     }
 
 }
