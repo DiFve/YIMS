@@ -130,18 +130,45 @@ public class Deck {
     }
 
     public void returnCard(Card card) {
-        System.out.println("Special index 0 left before: " + specialCard[0]);
+        //System.out.println("Special index 0 left before: " + specialCard[0]);
         if (!card.isSpecialCard()) {
             numCard[card.getNum() - 1] = 1;
         } else {
             String temp = card.getEffect();
-            if (temp.equals("returnMyLatestCard")) {
+            if (temp.equals("returnMyLatestCard")) 
+            {
                 specialCard[0]++;
-            } else if (temp.equals("returnEnemyLatestCard")) {
+            } 
+            else if (temp.equals("returnEnemyLatestCard")) {
                 specialCard[1]++;
             }
+            else if (temp.equals("enemyBetx2")) {
+                specialCard[2]++;
+            }
+            else if (temp.equals("drawCardNo3")) {
+                specialCard[3]++;
+            }
+            else if (temp.equals("drawBestCardForEnemy")) {
+                specialCard[4]++;
+            }
+            else if (temp.equals("drawBestCardForMe")) {
+                specialCard[5]++;
+            }
+            else if (temp.equals("changeToClosestTo24")) {
+                specialCard[6]++;
+            }
+            else if (temp.equals("drawCardNo4")) {
+                specialCard[7]++;
+            }
+            else if (temp.equals("drawCardNo5")) {
+                specialCard[8]++;
+            }
+            else if (temp.equals("drawCardNo6")) {
+                specialCard[9]++;
+            }
+            
         }
-        System.out.println("Special index 0 left after: " + specialCard[0]);
+        //System.out.println("Special index 0 left after: " + specialCard[0]);
     }
 
     public static void setCount(int count) {

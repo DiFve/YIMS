@@ -67,6 +67,10 @@ public class MainMenuController implements Initializable, ChangeListener {
         click.playClickSound();
         MainController maincontroller = loader.getController();
         maincontroller.clear();
+        YIMSBean.game.getPlayer().resetSpecial();
+        YIMSBean.game.getEnemy().resetSpecial();
+        YIMSBean.game.getPlayer().LP=1000;
+        YIMSBean.game.getEnemy().LP=1000;
         //Start Game
         maincontroller.playerDrawMethod();
         maincontroller.update();
@@ -76,12 +80,6 @@ public class MainMenuController implements Initializable, ChangeListener {
         maincontroller.update();
         maincontroller.enemyDrawMethod();
         maincontroller.update();
-        //maincontroller.enemyUpdate();
-        int[] temp = YIMSBean.game.getDeck().debug();
-        for (int i = 0; i < 11; i++) {
-            System.out.print(temp[i] + " " + "sdsdsdsdsds");
-            System.out.println("");
-        }
         //Start Game
     }
 

@@ -200,6 +200,16 @@ public class Enemy {
             specialHandFull = false;
         }
     }
+    public void resetSpecial() {
+        for (int i = 0; i < 5; i++) {
+            if (specialCards[i] != null) {
+                specialCardCount--;
+                game.getDeck().returnCard(specialCards[i]);
+                specialCards[i] = null;
+                specialHandFull = false;
+            }
+        }
+    }
 
     public void popCard() {
         if (numCardCount > 0) {
