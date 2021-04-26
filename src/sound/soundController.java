@@ -24,7 +24,7 @@ public class soundController {
     }
 
     public void playClickSound() {
-        playHitsound(clickSound);
+        //playHitsound(clickSound);
     }
 
     private void playHitsound(String fileName) {
