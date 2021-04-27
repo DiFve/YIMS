@@ -25,16 +25,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 
 import javafx.stage.Stage;
-import sound.soundController;
+
 
 /**
  * FXML Controller class
  *
  * @author jkbla
  */
-public class MainMenuController implements Initializable, ChangeListener {
+public class MainMenuController implements Initializable {
 
-    soundController click = new soundController();
+    
 
     @FXML
     private Button gonextBtn;
@@ -50,11 +50,13 @@ public class MainMenuController implements Initializable, ChangeListener {
     private ImageView CreditAction;
     @FXML
     private ImageView ExitAction;
+    @FXML
+    private ImageView HowtoplayAction;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        soundSlider.valueProperty().addListener(this);
-        soundSlider.setValue((soundController.volume) * 100.0);
+        
+        
         gonextBtn.setBackground(Background.EMPTY);
         creditBtn.setBackground(Background.EMPTY);
         exitBtn.setBackground(Background.EMPTY);
@@ -73,13 +75,13 @@ public class MainMenuController implements Initializable, ChangeListener {
         window.setScene(mainMenuScene);
         window.show();
         MainMenu.menuActive = false;
-        click.playClickSound();
+        
         MainController maincontroller = loader.getController();
         maincontroller.clear();
         YIMSBean.game.getPlayer().resetSpecial();
         YIMSBean.game.getEnemy().resetSpecial();
-        YIMSBean.game.getPlayer().LP=1000;
-        YIMSBean.game.getEnemy().LP=1000;
+        YIMSBean.game.getPlayer().LP=5000;
+        YIMSBean.game.getEnemy().LP=5000;
         //Start Game
         maincontroller.playerDrawMethod();
         maincontroller.update();
@@ -92,6 +94,15 @@ public class MainMenuController implements Initializable, ChangeListener {
         //Start Game
     }
 
+     @FXML
+    private void HowToPlayOnAction(ActionEvent event) throws IOException{
+        Parent howtoplayParent = FXMLLoader.load(getClass().getResource("HOWTOPLAY.fxml"));
+        Scene howtoplayScene = new Scene(howtoplayParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(howtoplayScene);
+        window.show();
+    }
+    
     @FXML
     private void creditOnAction(ActionEvent event) throws IOException {
 
@@ -100,7 +111,7 @@ public class MainMenuController implements Initializable, ChangeListener {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(creditScene);
         window.show();
-        click.playClickSound();
+        
     }
 
     @FXML
@@ -108,17 +119,13 @@ public class MainMenuController implements Initializable, ChangeListener {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.close();
     }
-
-    @Override
-    public void changed(ObservableValue ov, Object t, Object t1) {
-        double value = (double) soundSlider.getValue();
-        soundController.setVolume(value * 0.01);
-    }
+    
+   
 
     @FXML
     private void PlayExit(MouseEvent event) {
-        Image Play0 = new Image("/image/Play0.png");
-        PlayAction.setImage(Play0);
+        Image play0 = new Image("/image/Play0.png");
+        PlayAction.setImage(play0);
     }
 
     @FXML
@@ -129,26 +136,40 @@ public class MainMenuController implements Initializable, ChangeListener {
 
     @FXML
     private void CreditExit(MouseEvent event) {
-        Image Credit0 = new Image("/image/Credit0.png");
-        CreditAction.setImage(Credit0);
+        Image credit0 = new Image("/image/Credit0.png");
+        CreditAction.setImage(credit0);
     }
 
     @FXML
     private void CreditEnter(MouseEvent event) {
-        Image Credit1 = new Image("/image/Credit1.png");
-        CreditAction.setImage(Credit1);
+        Image credit1 = new Image("/image/Credit1.png");
+        CreditAction.setImage(credit1);
     }
 
     @FXML
     private void ExitExit(MouseEvent event) {
-        Image Exite0 = new Image("/image/EXIT0.png");
-        ExitAction.setImage(Exite0);
+        Image exite0 = new Image("/image/EXIT0.png");
+        ExitAction.setImage(exite0);
     }
 
     @FXML
     private void ExitEnter(MouseEvent event) {
-        Image Exite1 = new Image("/image/EXIT1.png");
-        ExitAction.setImage(Exite1);
+        Image exite1 = new Image("/image/EXIT1.png");
+        ExitAction.setImage(exite1);
     }
+
+    @FXML
+    private void HTPExit(MouseEvent event) {
+        Image howtoplay0 = new Image("/image/HOWTOPLAY0.png");
+        HowtoplayAction.setImage(howtoplay0);
+    }
+
+    @FXML
+    private void HTPEnter(MouseEvent event) {
+        Image howtoplay1 = new Image("/image/HOWTOPLAY1.png");
+        HowtoplayAction.setImage(howtoplay1);
+    }
+
+   
 
 }

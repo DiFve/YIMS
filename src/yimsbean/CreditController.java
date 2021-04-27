@@ -15,8 +15,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import sound.soundController;
+
 
 /**
  * FXML Controller class
@@ -25,7 +29,10 @@ import sound.soundController;
  */
 public class CreditController implements Initializable {
 
-    soundController click = new soundController();
+    
+    @FXML
+    private ImageView BackCAction;
+    
 
     /**
      * Initializes the controller class.
@@ -37,12 +44,24 @@ public class CreditController implements Initializable {
 
     @FXML
     private void creditOnAction(ActionEvent event) throws IOException {
-        click.playClickSound();
+       
         Parent creditParent = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
         Scene creditScene = new Scene(creditParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(creditScene);
         window.show();
+    }
+
+    @FXML
+    private void BackCExit(MouseEvent event) {
+        Image BackC0 = new Image("/image/Back0.png");
+        BackCAction.setImage(BackC0);
+    }
+
+    @FXML
+    private void BackCEnter(MouseEvent event) {
+        Image BackC1 = new Image("/image/Back1.png");
+        BackCAction.setImage(BackC1);
     }
 
 }

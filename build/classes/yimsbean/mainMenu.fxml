@@ -14,7 +14,12 @@
             <Image url="@../image/BackGround.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="CreditAction" fitHeight="86.0" fitWidth="122.0" layoutX="511.0" layoutY="578.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="HowtoplayAction" fitHeight="98.0" fitWidth="150.0" layoutX="310.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/HOWTOPLAY0.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="CreditAction" fitHeight="86.0" fitWidth="122.0" layoutX="530.0" layoutY="578.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/CREDIT0.png" />
          </image>
@@ -33,16 +38,17 @@
          <font>
             <Font name="Copperplate Gothic Bold" size="24.0" />
          </font></Button>
-      <Button fx:id="creditBtn" layoutX="526.0" layoutY="602.0" mnemonicParsing="false" onAction="#creditOnAction" onMouseEntered="#CreditEnter" onMouseExited="#CreditExit" opacity="0.0" prefHeight="49.0" prefWidth="95.0" text="credit" textFill="WHITE">
+      <Button fx:id="creditBtn" layoutX="544.0" layoutY="602.0" mnemonicParsing="false" onAction="#creditOnAction" onMouseEntered="#CreditEnter" onMouseExited="#CreditExit" opacity="0.0" prefHeight="49.0" prefWidth="95.0" text="credit" textFill="WHITE">
          <font>
             <Font name="Copperplate Gothic Bold" size="18.0" />
          </font></Button>
+      <Button layoutX="320.0" layoutY="599.0" mnemonicParsing="false" onAction="#HowToPlayOnAction" onMouseEntered="#HTPEnter" onMouseExited="#HTPExit" opacity="0.0" prefHeight="56.0" prefWidth="139.0" text="HowToPlay" />
       <Button fx:id="exitBtn" layoutX="762.0" layoutY="602.0" mnemonicParsing="false" onAction="#ExitAction" onMouseEntered="#ExitEnter" onMouseExited="#ExitExit" opacity="0.0" prefHeight="49.0" prefWidth="103.0" text="Exit" textFill="WHITE">
          <font>
             <Font name="Copperplate Gothic Bold" size="18.0" />
          </font></Button>
-      <Slider fx:id="soundSlider" layoutX="958.0" layoutY="526.0" orientation="VERTICAL" />
-      <ImageView fitHeight="39.0" fitWidth="46.0" layoutX="942.0" layoutY="697.0" pickOnBounds="true" preserveRatio="true">
+      <Slider fx:id="soundSlider" disable="true" layoutX="958.0" layoutY="526.0" opacity="0.0" orientation="VERTICAL" />
+      <ImageView fitHeight="39.0" fitWidth="46.0" layoutX="942.0" layoutY="697.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/sound.png" />
          </image>
