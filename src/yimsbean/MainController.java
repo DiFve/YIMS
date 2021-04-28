@@ -25,12 +25,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import sound.soundController;
+
 
 public class MainController implements Initializable {
 
     Boolean canDraw = true;
-    soundController BGsong = new soundController();
+    
     @FXML
     private Label lpBet, currentLP, currentEnemyLP, winLabel, currentNumEnemy, lpBetEnemy, specialUseLabel, yourBet, enemyBet;
     @FXML
