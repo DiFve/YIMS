@@ -187,7 +187,7 @@ public class MainController implements Initializable {
                 System.out.println("Bet player : " + betPlayer + "LP Player : " + YIMSBean.game.getPlayer().LP);
 
             }
-
+            EndTurn();
         } else {
             if (YIMSBean.game.getEnemy().enough && enableUpdate) {
                 if (YIMSBean.game.getPlayer().total > YIMSBean.game.getEnemy().total && YIMSBean.game.getEnemy().total <= currentMaximum) {
@@ -245,13 +245,13 @@ public class MainController implements Initializable {
                         YIMSBean.game.getPlayer().setLP(YIMSBean.game.getPlayer().getLP() - betPlayer);
                         System.out.println("Bet player : " + betPlayer + "LP Player : " + YIMSBean.game.getPlayer().LP);
                     }
-
                 }
                 update();
-
+                EndTurn();
             } else {
                 enemyDrawMethod();
             }
+
         }
 
         if (YIMSBean.game.getEnemy().total > currentMaximum && enableUpdate) {
@@ -277,7 +277,7 @@ public class MainController implements Initializable {
                 YIMSBean.game.getEnemy().setLP(YIMSBean.game.getEnemy().getLP() - betEnemy);
                 System.out.println("Bet player : " + betPlayer + "LP Player : " + YIMSBean.game.getPlayer().LP);
             }
-
+            EndTurn();
         }
 
     }
@@ -311,6 +311,7 @@ public class MainController implements Initializable {
                 System.out.println("Bet player : " + betPlayer + "LP Player : " + YIMSBean.game.getPlayer().LP);
                 canDraw = false;
             }
+            EndTurn();
 
         } else if (YIMSBean.game.getPlayer().getTotal() > currentMaximum) {
             if (YIMSBean.game.getPlayer().LP - betPlayer > 0) {
@@ -337,6 +338,7 @@ public class MainController implements Initializable {
                 System.out.println("Bet player : " + betPlayer + "LP Player : " + YIMSBean.game.getPlayer().LP);
                 canDraw = false;
             }
+            EndTurn();
         }
         if (!YIMSBean.game.getEnemy().enough && canDraw) {
             enemyDrawMethod();
@@ -694,7 +696,11 @@ public class MainController implements Initializable {
             for (int i = 0; i < 7; i++) {
                 if (YIMSBean.game.getEnemy().getNumCard()[i] != null) {
                     Rectangle temp = (Rectangle) enemyCard.getChildren().get(i);
-                    temp.setFill(new ImagePattern(ImageSet.getCard(0)));
+                    if (i == 0) {
+                        temp.setFill(new ImagePattern(ImageSet.getCard(YIMSBean.game.getEnemy().getNumCard()[i].getNum())));
+                    } else {
+                        temp.setFill(new ImagePattern(ImageSet.getCard(0)));
+                    }
                     temp.setDisable(false);
                     temp.setVisible(true);
                 }
@@ -752,6 +758,7 @@ public class MainController implements Initializable {
         canDraw = true;
     }
 
+
     @FXML
     private void USCExit(MouseEvent event) {
         Image USC0 = new Image("/image/Use special card0.png");
@@ -789,4 +796,17 @@ public class MainController implements Initializable {
     }
 
    
+
+    private void EndTurn() {
+        for (int i = 0; i < 7; i++) {
+            if (YIMSBean.game.getEnemy().getNumCard()[i] != null) {
+                Rectangle temp = (Rectangle) enemyCard.getChildren().get(i);
+                temp.setFill(new ImagePattern(ImageSet.getCard(YIMSBean.game.getEnemy().getNumCard()[i].getNum())));
+                temp.setDisable(false);
+                temp.setVisible(true);
+            }
+        }
+        currentNumEnemy.setText(YIMSBean.game.getEnemy().getTotal() + "/" + currentMaximum);
+    }
+
 }
