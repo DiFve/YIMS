@@ -26,11 +26,10 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-
 public class MainController implements Initializable {
 
     Boolean canDraw = true;
-    
+
     @FXML
     private Label lpBet, currentLP, currentEnemyLP, winLabel, currentNumEnemy, lpBetEnemy, specialUseLabel, yourBet, enemyBet;
     @FXML
@@ -127,7 +126,7 @@ public class MainController implements Initializable {
             }
 
         } else {
-            if (YIMSBean.game.getEnemy().enough && enableUpdate ) {
+            if (YIMSBean.game.getEnemy().enough && enableUpdate) {
                 if (YIMSBean.game.getPlayer().total > YIMSBean.game.getEnemy().total && YIMSBean.game.getEnemy().total <= currentMaximum) {
                     if (YIMSBean.game.getEnemy().LP - betEnemy > 0) {
                         winLabel.setText("You win!!!");
@@ -160,7 +159,7 @@ public class MainController implements Initializable {
                     drawCardBtn.setDisable(true);
                     keepCurrentBtn.setDisable(true);
                     useSpecialBtn.setDisable(true);
-                } else if(YIMSBean.game.getPlayer().total < YIMSBean.game.getEnemy().total && YIMSBean.game.getEnemy().total <= currentMaximum){
+                } else if (YIMSBean.game.getPlayer().total < YIMSBean.game.getEnemy().total && YIMSBean.game.getEnemy().total <= currentMaximum) {
                     if (YIMSBean.game.getPlayer().LP - betPlayer > 0) {
                         winLabel.setVisible(true);
                         winLabel.setText("You lose :(");
@@ -504,14 +503,14 @@ public class MainController implements Initializable {
             }
         }
 
-        if (YIMSBean.game.getEnemy().total < currentMaximum-3) {
+        if (YIMSBean.game.getEnemy().total < currentMaximum - 3) {
             YIMSBean.game.getEnemy().setTotal(YIMSBean.game.getEnemy().getTotal() + YIMSBean.game.getDeck().enemyDraw());
-            if (YIMSBean.game.getEnemy().total >= currentMaximum-3) {
+            if (YIMSBean.game.getEnemy().total >= currentMaximum - 3) {
                 YIMSBean.game.getEnemy().enough = true;
             } else {
                 YIMSBean.game.getEnemy().enough = false;
             }
-        } else if (YIMSBean.game.getEnemy().total >= currentMaximum-3 && YIMSBean.game.getEnemy().total <= currentMaximum) {
+        } else if (YIMSBean.game.getEnemy().total >= currentMaximum - 3 && YIMSBean.game.getEnemy().total <= currentMaximum) {
             YIMSBean.game.getEnemy().enough = true;
         }
         update();
@@ -632,7 +631,7 @@ public class MainController implements Initializable {
             for (int i = 0; i < 7; i++) {
                 if (YIMSBean.game.getEnemy().getNumCard()[i] != null) {
                     Rectangle temp = (Rectangle) enemyCard.getChildren().get(i);
-                    temp.setFill(new ImagePattern(ImageSet.getCard(YIMSBean.game.getEnemy().getNumCard()[i].getNum())));
+                    temp.setFill(new ImagePattern(ImageSet.getCard(0)));
                     temp.setDisable(false);
                     temp.setVisible(true);
                 }
@@ -646,7 +645,7 @@ public class MainController implements Initializable {
                 }
             }
             currentNum.setText(YIMSBean.game.getPlayer().getTotal() + "/" + currentMaximum);
-            currentNumEnemy.setText(YIMSBean.game.getEnemy().getTotal() + "/" + currentMaximum);
+            currentNumEnemy.setText("X/" + currentMaximum);
         }
 
     }

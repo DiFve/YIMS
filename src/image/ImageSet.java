@@ -18,17 +18,16 @@ import javafx.scene.shape.Rectangle;
 public class ImageSet {
 
     public static Image getCard(int number) {
-        return card[number-1];
+        return card[number];
     }
 
     public static void setCard(Image[] card) {
         ImageSet.card = card;
     }
 
-    public static Image[] card = new Image[]{new Image("image/1.png"),new Image("image/2.png"),
-    new Image("image/3.png"),new Image("image/4.png"),new Image("image/5.png"),new Image("image/6.png"),
-    new Image("image/7.png"),new Image("image/8.png"),new Image("image/9.png"),new Image("image/10.png"),
-    new Image("image/11.png")};
-
+    public static Image[] card = new Image[]{new Image("image/0.png"), new Image("image/1.png"), new Image("image/2.png"),
+        new Image("image/3.png"), new Image("image/4.png"), new Image("image/5.png"), new Image("image/6.png"),
+        new Image("image/7.png"), new Image("image/8.png"), new Image("image/9.png"), new Image("image/10.png"),
+        new Image("image/11.png")};
 
 }
