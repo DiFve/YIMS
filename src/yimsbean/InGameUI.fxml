@@ -22,9 +22,24 @@
          <bottom>
             <AnchorPane prefHeight="85.0" prefWidth="1039.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="useSpecialBtn" layoutX="193.0" layoutY="23.0" mnemonicParsing="false" onAction="#useSpecialBtnOnAction" opacity="0.0" prefHeight="40.0" prefWidth="110.0" text="Use special card" />
-                  <Button fx:id="drawCardBtn" layoutX="836.0" layoutY="23.0" mnemonicParsing="false" onAction="#drawCardBtnOnAction" opacity="0.0" prefHeight="40.0" prefWidth="94.0" text="Draw a card" />
-                  <Button fx:id="keepCurrentBtn" layoutX="495.0" layoutY="23.0" mnemonicParsing="false" onAction="#keepCurrentBtnOnAction" opacity="0.0" prefHeight="40.0" text="Keep current hand" />
+                  <ImageView fx:id="DACAction" fitHeight="66.0" fitWidth="102.0" layoutX="832.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/Draw%20a%20card0.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="KCHAction" fitHeight="44.0" fitWidth="115.0" layoutX="494.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/Keep%20current%20hand0.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="USCAction" fitHeight="55.0" fitWidth="113.0" layoutX="191.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/Use%20special%20card0.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="useSpecialBtn" layoutX="193.0" layoutY="23.0" mnemonicParsing="false" onAction="#useSpecialBtnOnAction" onMouseEntered="#USCEnter" onMouseExited="#USCExit" opacity="0.0" prefHeight="40.0" prefWidth="110.0" text="Use special card" />
+                  <Button fx:id="drawCardBtn" layoutX="836.0" layoutY="23.0" mnemonicParsing="false" onAction="#drawCardBtnOnAction" onMouseEntered="#DACEnter" onMouseExited="#DACExit" opacity="0.0" prefHeight="40.0" prefWidth="94.0" text="Draw a card" />
+                  <Button fx:id="keepCurrentBtn" layoutX="495.0" layoutY="23.0" mnemonicParsing="false" onAction="#keepCurrentBtnOnAction" onMouseEntered="#KCHEnter" onMouseExited="#KCHExit" opacity="0.0" prefHeight="40.0" text="Keep current hand" />
                </children>
             </AnchorPane>
          </bottom>

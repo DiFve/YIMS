@@ -21,6 +21,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -52,6 +55,64 @@ public class MainController implements Initializable {
     public static int betPlayer = 500, betEnemy = 500;
     public static int currentMaximum = 21;
     Boolean enableUpdate = true;
+    @FXML
+    private Rectangle card1;
+    @FXML
+    private Rectangle card2;
+    @FXML
+    private Rectangle card3;
+    @FXML
+    private Rectangle card4;
+    @FXML
+    private Rectangle card5;
+    @FXML
+    private Rectangle card6;
+    @FXML
+    private Rectangle card7;
+    @FXML
+    private Label playerCard1;
+    @FXML
+    private Label playerCard2;
+    @FXML
+    private Label playerCard3;
+    @FXML
+    private Label playerCard4;
+    @FXML
+    private Label playerCard6;
+    @FXML
+    private Label playerCard5;
+    @FXML
+    private Label playerCard7;
+    @FXML
+    private Rectangle enemy1;
+    @FXML
+    private Rectangle enemy2;
+    @FXML
+    private Rectangle enemy3;
+    @FXML
+    private Rectangle enemy4;
+    @FXML
+    private Rectangle enemy5;
+    @FXML
+    private Rectangle enemy6;
+    @FXML
+    private Rectangle enemy7;
+    @FXML
+    private Button specialCard1;
+    @FXML
+    private Button specialCard2;
+    @FXML
+    private Button specialCard3;
+    @FXML
+    private Button specialCard4;
+    @FXML
+    private Button specialCard5;
+    @FXML
+    private ImageView DACAction;
+    @FXML
+    private ImageView KCHAction;
+    @FXML
+    private ImageView USCAction;
 
     @FXML
     public void useSpecialBtnOnAction(ActionEvent event) {
@@ -130,7 +191,7 @@ public class MainController implements Initializable {
             if (YIMSBean.game.getEnemy().enough && enableUpdate ) {
                 if (YIMSBean.game.getPlayer().total > YIMSBean.game.getEnemy().total && YIMSBean.game.getEnemy().total <= currentMaximum) {
                     if (YIMSBean.game.getEnemy().LP - betEnemy > 0) {
-                        winLabel.setText("You win!!!");
+                        winLabel.setText("You win!!!"); 
                         winLabel.setVisible(true);
                         lpBetEnemy.setVisible(true);
                         lpBetEnemy.setText("-" + betEnemy);
@@ -154,7 +215,7 @@ public class MainController implements Initializable {
 
                 } else if (YIMSBean.game.getPlayer().total == YIMSBean.game.getEnemy().total && YIMSBean.game.getEnemy().total <= currentMaximum) {
                     winLabel.setVisible(true);
-                    winLabel.setText("Draw");
+                    winLabel.setText("     Draw");
                     continueBtn.setVisible(true);
                     continueBtn.setDisable(false);
                     drawCardBtn.setDisable(true);
@@ -688,5 +749,41 @@ public class MainController implements Initializable {
         betEnemy = 500;
         currentMaximum = 21;
         canDraw = true;
+    }
+
+    @FXML
+    private void USCExit(MouseEvent event) {
+        Image USC0 = new Image("/image/Use special card0.png");
+        USCAction.setImage(USC0);
+    }
+
+    @FXML
+    private void USCEnter(MouseEvent event) {
+        Image USC1 = new Image("/image/Use special card1.png");
+        USCAction.setImage(USC1);
+    }
+
+    @FXML
+    private void DACExit(MouseEvent event) {
+        Image DAC0 = new Image("/image/Draw a card0.png");
+        DACAction.setImage(DAC0);
+    }
+
+    @FXML
+    private void DACEnter(MouseEvent event) {
+        Image DAC1 = new Image("/image/Draw a card1.png");
+        DACAction.setImage(DAC1);
+    }
+
+    @FXML
+    private void KCHExit(MouseEvent event) {
+        Image KCH0 = new Image("/image/Keep current hand0.png");
+        KCHAction.setImage(KCH0);
+    }
+
+    @FXML
+    private void KCHEnter(MouseEvent event) {
+        Image KCH1 = new Image("/image/Keep current hand1.png");
+        KCHAction.setImage(KCH1);
     }
 }
