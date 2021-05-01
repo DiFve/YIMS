@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="773.0" prefWidth="1021.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yimsbean.MainController">
    <children>
-      <ImageView fitHeight="773.0" fitWidth="1131.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="780.0" fitWidth="1040.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/BackgroudGame.png" />
          </image>
@@ -22,9 +22,24 @@
          <bottom>
             <AnchorPane prefHeight="85.0" prefWidth="1039.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="useSpecialBtn" layoutX="193.0" layoutY="23.0" mnemonicParsing="false" onAction="#useSpecialBtnOnAction" opacity="0.0" prefHeight="40.0" prefWidth="110.0" text="Use special card" />
-                  <Button fx:id="drawCardBtn" layoutX="836.0" layoutY="23.0" mnemonicParsing="false" onAction="#drawCardBtnOnAction" opacity="0.0" prefHeight="40.0" prefWidth="94.0" text="Draw a card" />
-                  <Button fx:id="keepCurrentBtn" layoutX="495.0" layoutY="23.0" mnemonicParsing="false" onAction="#keepCurrentBtnOnAction" opacity="0.0" prefHeight="40.0" text="Keep current hand" />
+                  <ImageView fx:id="DACAction" fitHeight="66.0" fitWidth="102.0" layoutX="832.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/Draw%20a%20card0.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="KCHAction" fitHeight="44.0" fitWidth="115.0" layoutX="494.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/Keep%20current%20hand0.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="USCAction" fitHeight="55.0" fitWidth="113.0" layoutX="191.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/Use%20special%20card0.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="useSpecialBtn" layoutX="193.0" layoutY="23.0" mnemonicParsing="false" onAction="#useSpecialBtnOnAction" onMouseEntered="#USCEnter" onMouseExited="#USCExit" opacity="0.0" prefHeight="40.0" prefWidth="110.0" text="Use special card" />
+                  <Button fx:id="drawCardBtn" layoutX="836.0" layoutY="23.0" mnemonicParsing="false" onAction="#drawCardBtnOnAction" onMouseEntered="#DACEnter" onMouseExited="#DACExit" opacity="0.0" prefHeight="40.0" prefWidth="94.0" text="Draw a card" />
+                  <Button fx:id="keepCurrentBtn" layoutX="495.0" layoutY="23.0" mnemonicParsing="false" onAction="#keepCurrentBtnOnAction" onMouseEntered="#KCHEnter" onMouseExited="#KCHExit" opacity="0.0" prefHeight="40.0" text="Keep current hand" />
                </children>
             </AnchorPane>
          </bottom>
@@ -135,29 +150,29 @@
             </AnchorPane>
          </left>
          <right>
-            <AnchorPane fx:id="specialCardPane" disable="true" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="234.0" style="-fx-background-color: #0F0F0F;" visible="false" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="specialCardPane" disable="true" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="234.0" styleClass="bodybg" stylesheets="@../CSS/style.css" visible="false" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="specialCard1" alignment="CENTER" disable="true" layoutX="49.0" layoutY="59.0" mnemonicParsing="false" onAction="#specialBtnUsed" prefHeight="30.0" prefWidth="150.0" text="Button" visible="false">
+                  <Button fx:id="specialCard1" alignment="CENTER" disable="true" layoutX="49.0" layoutY="59.0" mnemonicParsing="false" onAction="#specialBtnUsed" prefHeight="30.0" prefWidth="150.0" styleClass="bodybot" stylesheets="@../CSS/style.css" text="Button" textFill="WHITE" visible="false">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="specialCard2" alignment="CENTER" disable="true" layoutX="49.0" layoutY="104.0" mnemonicParsing="false" onAction="#specialBtnUsed" prefHeight="30.0" prefWidth="150.0" text="Button" visible="false">
+                  <Button fx:id="specialCard2" alignment="CENTER" disable="true" layoutX="49.0" layoutY="104.0" mnemonicParsing="false" onAction="#specialBtnUsed" prefHeight="30.0" prefWidth="150.0" styleClass="bodybot" stylesheets="@../CSS/style.css" text="Button" textFill="WHITE" visible="false">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="specialCard3" alignment="CENTER" disable="true" layoutX="49.0" layoutY="149.0" mnemonicParsing="false" onAction="#specialBtnUsed" prefHeight="30.0" prefWidth="150.0" text="Button" visible="false">
+                  <Button fx:id="specialCard3" alignment="CENTER" disable="true" layoutX="49.0" layoutY="149.0" mnemonicParsing="false" onAction="#specialBtnUsed" prefHeight="30.0" prefWidth="150.0" styleClass="bodybot" stylesheets="@../CSS/style.css" text="Button" textFill="WHITE" visible="false">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="specialCard4" alignment="CENTER" disable="true" layoutX="49.0" layoutY="194.0" mnemonicParsing="false" onAction="#specialBtnUsed" prefHeight="30.0" prefWidth="150.0" text="Button" visible="false">
+                  <Button fx:id="specialCard4" alignment="CENTER" disable="true" layoutX="49.0" layoutY="194.0" mnemonicParsing="false" onAction="#specialBtnUsed" prefHeight="30.0" prefWidth="150.0" styleClass="bodybot" stylesheets="@../CSS/style.css" text="Button" textFill="WHITE" visible="false">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button fx:id="specialCard5" alignment="CENTER" disable="true" layoutX="49.0" layoutY="240.0" mnemonicParsing="false" onAction="#specialBtnUsed" prefHeight="30.0" prefWidth="150.0" text="Button" visible="false">
+                  <Button fx:id="specialCard5" alignment="CENTER" disable="true" layoutX="49.0" layoutY="240.0" mnemonicParsing="false" onAction="#specialBtnUsed" prefHeight="30.0" prefWidth="150.0" styleClass="bodybot" stylesheets="@../CSS/style.css" text="Button" textFill="WHITE" visible="false">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -173,7 +188,7 @@
                         <Font name="Pristina" size="39.0" />
                      </font>
                   </Label>
-                  <Button fx:id="continueBtn" disable="true" layoutX="252.0" layoutY="410.0" mnemonicParsing="false" onAction="#continueBtnOnAction" text="Continue" visible="false" />
+                  <Button fx:id="continueBtn" disable="true" layoutX="252.0" layoutY="410.0" mnemonicParsing="false" onAction="#continueBtnOnAction" styleClass="bodyContinue" stylesheets="@../CSS/style.css" text="Continue" visible="false" />
                   <HBox fx:id="playerCard" layoutY="575.0" prefHeight="106.0" prefWidth="567.0" spacing="20.0">
                      <children>
                         <Rectangle fx:id="card1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="105.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="60.0" />
@@ -226,7 +241,7 @@
                         <Font name="Pristina" size="39.0" />
                      </font>
                   </Label>
-                  <Button fx:id="continueBtnLabel" disable="true" layoutX="253.0" layoutY="409.0" mnemonicParsing="false" onAction="#continueBtnLabelOnAction" text="Continue" visible="false" />
+                  <Button fx:id="continueBtnLabel" disable="true" layoutX="253.0" layoutY="409.0" mnemonicParsing="false" onAction="#continueBtnLabelOnAction" styleClass="bodyContinue" stylesheets="@../CSS/style.css" text="Continue" visible="false" />
                </children>
             </AnchorPane>
          </center>
